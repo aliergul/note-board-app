@@ -4,7 +4,6 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  background-color: #131842;
 }
 body,
 html,
@@ -14,13 +13,21 @@ html,
   height: 100%;
   width: 100%;
   margin: 0;
-  color: #fff;
+  background-color: #131842;
 }
 
 /* Header Title */
 .header {
   background-color: #e68369;
   padding: 30px;
+  display: flex;
+  justify-content: space-between;
+  color: #fff;
+}
+
+.header div button {
+  background-color: #e68369;
+  color: #fff;
 }
 
 /* Login-SignUp Form */
