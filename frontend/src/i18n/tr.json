@@ -2,6 +2,10 @@
   "language_tr": "Türkçe",
   "language_en": "İngilizce",
   "login": {
-    "title": "Giriş Yap"
+    "title": "Giriş Yap",
+    "email": "Email",
+    "password": "Şifre",
+    "get_account": "Hesabın yok mu?",
+    "sign_up": "Buradan kayıt olabilirsin."
   }
 }
