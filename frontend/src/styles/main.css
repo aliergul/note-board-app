@@ -88,6 +88,12 @@ html,
   background-color: #0056b3;
 }
 
+.login-form .form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
 .additional-links {
   display: flex;
   gap: 10px;
@@ -113,4 +119,15 @@ html,
   justify-content: center;
   align-items: center;
   margin-top: 5px;
+}
+
+.error-text {
+  color: red;
+  padding-bottom: 3px;
+}
+
+.action-btn {
+  display: flex;
+  width: 100%;
+  justify-content: center;
 }

@@ -6,6 +6,18 @@
     "email": "Email",
     "password": "Şifre",
     "get_account": "Hesabın yok mu?",
-    "sign_up": "Buradan kayıt olabilirsin."
+    "sign_up": "Buradan kayıt olabilirsin.",
+    "input_error": "Eposta veya şifre hatalıdır."
+  },
+  "signup": {
+    "title": "Kayıt Ol",
+    "username": "Kullanıcı Adı",
+    "email": "Email",
+    "password": "Şifre",
+    "repeat_password": "Şifre Tekrarı",
+    "username_error": "Kullanıcı adı alanı boş bırakılamaz.",
+    "email_error": "Eposta formatı hatalıdır.",
+    "password_error": "Şifreler birbirleriyle uyuşmuyor.",
+    "already_have": "Zaten bir hesabınız mı var?"
   }
 }
