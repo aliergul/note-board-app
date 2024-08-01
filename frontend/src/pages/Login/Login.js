@@ -7,7 +7,7 @@ import validateEmail from "../../utils/validateEmail";
 const Login = () => {
   const { t } = useTranslation();
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState(null);
+  const [password, setPassword] = useState("");
   const [controlPassword, setControlPassword] = useState("");
   const [error, setError] = useState(null);
 
@@ -65,7 +65,7 @@ const Login = () => {
 
           <button
             type="submit"
-            class="action-btn btn btn-primary"
+            className="action-btn btn btn-primary"
             style={{ marginTop: 10, marginBottom: 10 }}
           >
             {t("login.title")}

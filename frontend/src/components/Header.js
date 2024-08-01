@@ -5,6 +5,7 @@ import tr from "../assets/tr.svg";
 import en from "../assets/en.svg";
 import Dropdown from "react-bootstrap/Dropdown";
 import ProfileCard from "./ProfileCard";
+import SearchInput from "./SearchInput";
 
 const Header = () => {
   const { t } = useTranslation();
@@ -18,6 +19,7 @@ const Header = () => {
   return (
     <div className="header">
       <span>Note Board</span>
+      <SearchInput />
       <div className="d-flex gap-5">
         <ProfileCard />
         <Dropdown>

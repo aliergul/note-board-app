@@ -3,7 +3,7 @@ import React from "react";
 const CustomInputContainer = ({
   label,
   placeholder,
-  value,
+  value = "",
   setValue,
   type = "text",
   id = "custom-input",
