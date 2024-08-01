@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import tr from "../assets/tr.svg";
 import en from "../assets/en.svg";
 import Dropdown from "react-bootstrap/Dropdown";
+import ProfileCard from "./ProfileCard";
 
 const Header = () => {
   const { t } = useTranslation();
@@ -17,7 +18,8 @@ const Header = () => {
   return (
     <div className="header">
       <span>Note Board</span>
-      <div>
+      <div className="d-flex gap-5">
+        <ProfileCard />
         <Dropdown>
           <Dropdown.Toggle variant="success" id="dropdown-basic">
             <img

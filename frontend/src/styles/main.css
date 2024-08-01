@@ -23,6 +23,7 @@ html,
 /* Header Title */
 .header {
   position: fixed;
+  align-items: center;
   top: 0;
   width: 100%;
   background-color: #e68369;
@@ -130,4 +131,28 @@ html,
   display: flex;
   width: 100%;
   justify-content: center;
+}
+
+/* profile card */
+
+.profile-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+.profile-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ecceae;
+  border-radius: 9999px;
+  padding: 15px;
+  color: #131842;
+}
+
+.profile-info {
+  display: grid;
+  color: #131842;
 }
