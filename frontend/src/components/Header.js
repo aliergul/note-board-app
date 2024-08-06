@@ -23,7 +23,7 @@ const Header = () => {
       <div className="d-flex gap-5">
         <ProfileCard />
         <Dropdown>
-          <Dropdown.Toggle variant="success" id="dropdown-basic">
+          <Dropdown.Toggle variant="secondary" id="dropdown-basic">
             <img
               src={selectedLanguage === "tr" ? tr : en}
               alt=""
@@ -35,6 +35,7 @@ const Header = () => {
             <Dropdown.Item onClick={() => handleLanguage("tr")}>
               <img src={tr} alt="" width="24" height="24" /> {t("language_tr")}
             </Dropdown.Item>
+            <Dropdown.Divider />
             <Dropdown.Item onClick={() => handleLanguage("en")}>
               <img src={en} alt="" width="24" height="24" /> {t("language_en")}
             </Dropdown.Item>

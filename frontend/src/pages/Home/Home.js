@@ -1,75 +1,47 @@
-import React from "react";
-import NoteCard from "../../components/NoteCard";
+import React, { useState } from "react";
+import NoteCard from "../../components/NoteCard/NoteCard";
 import { MdAdd } from "react-icons/md";
+import NoteCardModal from "../../components/NoteCard/NoteCardModal";
+
+const exampleData = {
+  title: "Note Board Test Title",
+  inserttime: 1722599696,
+  content:
+    "Bu deneme contenti için yazılmış bir yazıdır. Bu deneme contenti için yazılmış bir yazıdır.",
+  tags: ["test", "todo"],
+  isPinned: true,
+};
 
 const Home = () => {
+  const [openModal, setOpenModal] = useState(false);
+  const [modalType, setModalType] = useState("add");
+
   return (
     <>
       <div className="dashboard-content">
         <NoteCard
-          title="Note Board Test Title"
-          date={1722599696}
-          content="Bu deneme contenti için yazılmış bir yazıdır. Bu deneme contenti için yazılmış bir yazıdır."
-          tags={["test", "todo"]}
-          isPinned={true}
+          title={exampleData?.title}
+          inserttime={exampleData?.date}
+          content={exampleData?.content}
+          tags={exampleData?.tags}
+          isPinned={exampleData?.isPinned}
           handlePinNote={() => {}}
           handleEdit={() => {}}
           handleDelete={() => {}}
-        />
-        <NoteCard
-          title="Note Board Test Title"
-          date={1722599696}
-          content="Bu deneme contenti için yazılmış bir yazıdır. Bu deneme contenti için yazılmış bir yazıdır."
-          tags={["test", "todo"]}
-          isPinned={true}
-          handlePinNote={() => {}}
-          handleEdit={() => {}}
-          handleDelete={() => {}}
-        />
-        <NoteCard
-          title="Note Board Test Title"
-          date={1722599696}
-          content="Bu deneme contenti için yazılmış bir yazıdır. Bu deneme contenti için yazılmış bir yazıdır."
-          tags={["test", "todo"]}
-          isPinned={true}
-          handlePinNote={() => {}}
-          handleEdit={() => {}}
-          handleDelete={() => {}}
-        />
-        <NoteCard
-          title="Note Board Test Title"
-          date={1722599696}
-          content="Bu deneme contenti için yazılmış bir yazıdır. Bu deneme contenti için yazılmış bir yazıdır."
-          tags={["test", "todo"]}
-          isPinned={true}
-          handlePinNote={() => {}}
-          handleEdit={() => {}}
-          handleDelete={() => {}}
-        />
-        <NoteCard
-          title="Note Board Test Title"
-          date={1722599696}
-          content="Bu deneme contenti için yazılmış bir yazıdır. Bu deneme contenti için yazılmış bir yazıdır."
-          tags={["test", "todo"]}
-          isPinned={true}
-          handlePinNote={() => {}}
-          handleEdit={() => {}}
-          handleDelete={() => {}}
-        />
-        <NoteCard
-          title="Note Board Test Title"
-          date={1722599696}
-          content="Bu deneme contenti için yazılmış bir yazıdır. Bu deneme contenti için yazılmış bir yazıdır."
-          tags={["test", "todo"]}
-          isPinned={true}
-          handlePinNote={() => {}}
-          handleEdit={() => {}}
-          handleDelete={() => {}}
+          setType={setModalType}
+          setOpen={setOpenModal}
         />
       </div>
-      <div className="dashboard-content-add">
+      <div
+        className="dashboard-content-add"
+        onClick={() => {
+          setModalType("add");
+          setOpenModal(true);
+        }}
+      >
         <MdAdd size={30} />
       </div>
+      <NoteCardModal open={openModal} setOpen={setOpenModal} type={modalType} />
     </>
   );
 };

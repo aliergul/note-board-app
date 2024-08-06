@@ -1,17 +1,20 @@
 import moment from "moment";
 import React from "react";
 // import { useTranslation } from "react-i18next";
-import { MdDelete, MdEdit, MdOutlinePushPin } from "react-icons/md";
+import { MdDelete, MdEdit } from "react-icons/md";
+import { RiPushpin2Fill, RiPushpinLine } from "react-icons/ri";
 
 const NoteCard = ({
   title,
-  date,
+  inserttime,
   content,
   tags,
   isPinned,
   handlePinNote,
   handleEdit,
   handleDelete,
+  setType,
+  setOpen,
 }) => {
   //   const { t } = useTranslation();
 
@@ -21,13 +24,13 @@ const NoteCard = ({
         <div className="dashboard-item-header">
           <div className="dashboard-header-content">
             <span>{title}</span>
-            <MdOutlinePushPin
-              size={20}
-              className="pin-button"
-              color={`${isPinned ? "#0019F8" : "#131842"}`}
-            />
+            {isPinned ? (
+              <RiPushpin2Fill size={20} className="pin-button" />
+            ) : (
+              <RiPushpinLine size={20} className="pin-button" />
+            )}
           </div>
-          <span>{moment(date * 1000).format("DD/MM/YYYY HH:mm")}</span>
+          <span>{moment(inserttime * 1000).format("DD/MM/YYYY HH:mm")}</span>
         </div>
         <hr />
         <p>{content}</p>
@@ -40,8 +43,20 @@ const NoteCard = ({
             ))}
           </div>
           <div className="footer-buttons">
-            <MdDelete size={20} />
-            <MdEdit size={20} />
+            <MdDelete
+              size={20}
+              onClick={() => {
+                setType("delete");
+                setOpen(true);
+              }}
+            />
+            <MdEdit
+              size={20}
+              onClick={() => {
+                setType("edit");
+                setOpen(true);
+              }}
+            />
           </div>
         </div>
 

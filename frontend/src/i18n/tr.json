@@ -1,6 +1,7 @@
 {
   "language_tr": "Türkçe",
   "language_en": "İngilizce",
+  "search_placeholder": "Notlarda arama yapabilirsiniz.",
   "login": {
     "title": "Giriş Yap",
     "email": "Email",
@@ -20,5 +21,13 @@
     "password_error": "Şifreler birbirleriyle uyuşmuyor.",
     "already_have": "Zaten bir hesabınız mı var?"
   },
-  "search_placeholder": "Notlarda arama yapabilirsiniz."
+  "modal": {
+    "title_add": "Not Ekle",
+    "title_edit": "Notu Düzenle",
+    "title_delete": "Notu Sil",
+    "close": "Kapat",
+    "add": "Ekle",
+    "edit": "Düzenle",
+    "delete": "Sil"
+  }
 }

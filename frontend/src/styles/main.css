@@ -18,20 +18,19 @@ html,
 
 .wrapper {
   height: 100%;
+  display: grid;
+  grid-template-rows: auto 1fr;
 }
 
 /* Header Title */
 .header {
-  position: fixed;
-  align-items: center;
-  top: 0;
-  width: 100%;
-  background-color: #e68369;
-  padding: 30px;
   display: flex;
   justify-content: space-between;
+  position: relative;
+  align-items: center;
+  background-color: #e68369;
+  padding: 10px 20px;
   color: #fff;
-  z-index: 1000;
 }
 
 .header div button {
@@ -41,7 +40,7 @@ html,
 
 /* Main content area */
 .content {
-  margin-top: 114px;
+  position: relative;
 }
 
 /* Login-SignUp Form */
@@ -294,6 +293,16 @@ html,
 }
 .footer-buttons svg:hover {
   opacity: 1;
+}
+
+/* Modal */
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.modal-button {
+  border: none;
 }
 
 hr {
