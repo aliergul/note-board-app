@@ -7,6 +7,7 @@ import { RiPushpin2Fill, RiPushpinLine } from "react-icons/ri";
 const NoteCard = ({
   title,
   inserttime,
+  endtime,
   content,
   tags,
   isPinned,
@@ -31,6 +32,7 @@ const NoteCard = ({
             )}
           </div>
           <span>{moment(inserttime * 1000).format("DD/MM/YYYY HH:mm")}</span>
+          <span>{moment(endtime * 1000).format("DD/MM/YYYY HH:mm")}</span>
         </div>
         <hr />
         <p>{content}</p>

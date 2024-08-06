@@ -6,6 +6,7 @@ import NoteCardModal from "../../components/NoteCard/NoteCardModal";
 const exampleData = {
   title: "Note Board Test Title",
   inserttime: 1722599696,
+  modified_date: 1722956068,
   content:
     "Bu deneme contenti için yazılmış bir yazıdır. Bu deneme contenti için yazılmış bir yazıdır.",
   tags: ["test", "todo"],
@@ -21,7 +22,7 @@ const Home = () => {
       <div className="dashboard-content">
         <NoteCard
           title={exampleData?.title}
-          inserttime={exampleData?.date}
+          inserttime={exampleData?.inserttime}
           content={exampleData?.content}
           tags={exampleData?.tags}
           isPinned={exampleData?.isPinned}
@@ -41,7 +42,12 @@ const Home = () => {
       >
         <MdAdd size={30} />
       </div>
-      <NoteCardModal open={openModal} setOpen={setOpenModal} type={modalType} />
+      <NoteCardModal
+        open={openModal}
+        setOpen={setOpenModal}
+        type={modalType}
+        noteCard={exampleData}
+      />
     </>
   );
 };

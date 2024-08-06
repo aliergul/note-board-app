@@ -16,6 +16,13 @@ html,
   background-color: #131842;
 }
 
+hr {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
 .wrapper {
   height: 100%;
   display: grid;
@@ -296,18 +303,19 @@ html,
 }
 
 /* Modal */
-.modal-header {
-  display: flex;
+.add-edit-modal-container {
+  display: grid;
+  width: 100%;
   align-items: center;
-  justify-content: space-between;
-}
-.modal-button {
-  border: none;
+  padding: 5px;
 }
 
-hr {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-  border: 0;
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
+.add-edit-modal-section {
+  display: grid;
+  color: #131842;
+  opacity: 0.5;
+}
+
+.add-edit-modal-title-input {
+  border: #333;
 }

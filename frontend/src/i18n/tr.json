@@ -28,6 +28,12 @@
     "close": "Kapat",
     "add": "Ekle",
     "edit": "Düzenle",
-    "delete": "Sil"
+    "delete": "Sil",
+    "form_title": "Başlık",
+    "form_title_placeholder": "Deveden büyük fil var.",
+    "form_content_title": "İçerik",
+    "form_content_placeholder": "Tanrıyı güldürmek istiyorsan ona planlarından bahset!",
+    "form_tags_title": "Etiketler",
+    "delete_description": " <span class='fw-bold'>{{title}}</span> isimli not tamamen silinecektir. Onaylıyor musunuz?"
   }
 }
