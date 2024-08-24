@@ -9,7 +9,18 @@ const exampleData = {
   modified_date: 1722956068,
   content:
     "Bu deneme contenti için yazılmış bir yazıdır. Bu deneme contenti için yazılmış bir yazıdır.",
-  tags: ["test", "todo"],
+  tags: [
+    {
+      tag_id: "1",
+      name: "test",
+      color: "#fff",
+    },
+    {
+      tag_id: "2",
+      name: "todo",
+      color: "#000",
+    },
+  ],
   isPinned: true,
 };
 

@@ -25,15 +25,20 @@ const NoteCardAddEdit = ({ open, setOpen, type = "add", data }) => {
           <div className="add-edit-modal-container">
             <Form onSubmit={handleAction}>
               <Form.Group className="mb-3">
-                <Form.Label>{t("modal.form_title")}</Form.Label>
+                <Form.Label className="titles">
+                  {t("modal.form_title")}
+                </Form.Label>
                 <Form.Control
                   type="text"
                   placeholder={t("modal.form_title_placeholder")}
                   defaultValue={type === "edit" ? data?.title : ""}
                 />
               </Form.Group>
+
               <Form.Group className="mb-3">
-                <Form.Label>{t("modal.form_content_title")}</Form.Label>
+                <Form.Label className="titles">
+                  {t("modal.form_content_title")}
+                </Form.Label>
                 <Form.Control
                   as="textarea"
                   rows={3}
@@ -41,13 +46,13 @@ const NoteCardAddEdit = ({ open, setOpen, type = "add", data }) => {
                   defaultValue={type === "edit" ? data?.content : ""}
                 />
               </Form.Group>
+
               <Form.Group className="">
-                <Form.Label>{t("modal.form_tags_title")}</Form.Label>
-                {/* <Form.Control
-                  type="text"
-                  placeholder={t("modal.form_title_placeholder")}
-                /> */}
+                <Form.Label className="titles">
+                  {t("modal.form_tags_title")}
+                </Form.Label>
               </Form.Group>
+
               <Modal.Footer>
                 <Button variant="secondary" onClick={handleClose}>
                   {t("modal.close")}

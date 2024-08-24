@@ -3,6 +3,7 @@ import React from "react";
 // import { useTranslation } from "react-i18next";
 import { MdDelete, MdEdit } from "react-icons/md";
 import { RiPushpin2Fill, RiPushpinLine } from "react-icons/ri";
+import TagItem from "../Tags/TagItem";
 
 const NoteCard = ({
   title,
@@ -41,7 +42,10 @@ const NoteCard = ({
         <div className="dashboard-item-footer">
           <div className="tags">
             {tags.map((tag, i) => (
-              <span key={i}>#{tag}</span>
+              // <span key={i}>#{tag}</span>
+              <div key={i}>
+                <TagItem item={tag} index={i} />
+              </div>
             ))}
           </div>
           <div className="footer-buttons">
@@ -61,7 +65,6 @@ const NoteCard = ({
             />
           </div>
         </div>
-
         <hr />
       </div>
     </div>
