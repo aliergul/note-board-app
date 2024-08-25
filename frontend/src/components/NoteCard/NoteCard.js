@@ -1,6 +1,5 @@
 import moment from "moment";
 import React from "react";
-// import { useTranslation } from "react-i18next";
 import { MdDelete, MdEdit } from "react-icons/md";
 import { RiPushpin2Fill, RiPushpinLine } from "react-icons/ri";
 import TagItem from "../Tags/TagItem";
@@ -18,8 +17,6 @@ const NoteCard = ({
   setType,
   setOpen,
 }) => {
-  //   const { t } = useTranslation();
-
   return (
     <div className="dashboard-container">
       <div className="dashboard-item">
@@ -33,7 +30,7 @@ const NoteCard = ({
             )}
           </div>
           <span>{moment(inserttime * 1000).format("DD/MM/YYYY HH:mm")}</span>
-          <span>{moment(endtime * 1000).format("DD/MM/YYYY HH:mm")}</span>
+          {/* <span>{moment(endtime * 1000).format("DD/MM/YYYY HH:mm")}</span> */}
         </div>
         <hr />
         <p>{content}</p>
@@ -42,7 +39,6 @@ const NoteCard = ({
         <div className="dashboard-item-footer">
           <div className="tags">
             {tags.map((tag, i) => (
-              // <span key={i}>#{tag}</span>
               <div key={i}>
                 <TagItem item={tag} index={i} />
               </div>
