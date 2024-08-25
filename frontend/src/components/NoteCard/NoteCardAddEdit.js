@@ -1,6 +1,7 @@
 import React from "react";
 import { Button, Form, Modal } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
+import TagInput from "../Tags/TagInput";
 
 const NoteCardAddEdit = ({ open, setOpen, type = "add", data }) => {
   const { t } = useTranslation();
@@ -51,6 +52,7 @@ const NoteCardAddEdit = ({ open, setOpen, type = "add", data }) => {
                 <Form.Label className="titles">
                   {t("modal.form_tags_title")}
                 </Form.Label>
+                <TagInput tags={data?.tags} />
               </Form.Group>
 
               <Modal.Footer>

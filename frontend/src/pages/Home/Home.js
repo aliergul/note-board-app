@@ -13,12 +13,12 @@ const exampleData = {
     {
       tag_id: "1",
       name: "test",
-      color: "#fff",
+      color: "#AF0909",
     },
     {
       tag_id: "2",
       name: "todo",
-      color: "#000",
+      color: "#14DB24",
     },
   ],
   isPinned: true,
