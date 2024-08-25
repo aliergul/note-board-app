@@ -15,22 +15,15 @@ const SignUp = () => {
 
   const handlePassword = () => {
     var x = document.getElementById("password-input");
-    if (x.type === "password") {
-      x.type = "text";
-      setControlPassword("text");
-    } else {
-      x.type = "password";
-      setControlPassword("password");
-    }
-  };
+    var y = document.getElementById("repeat-password-input");
 
-  const handleRepeatPassword = () => {
-    var x = document.getElementById("repeat-password-input");
-    if (x.type === "password") {
+    if (x.type === "password" || y.type === "password") {
       x.type = "text";
+      y.type = "text";
       setControlPassword("text");
     } else {
       x.type = "password";
+      y.type = "password";
       setControlPassword("password");
     }
   };
@@ -95,7 +88,7 @@ const SignUp = () => {
               type="password"
             />
 
-            <button className="icon-button" onClick={handleRepeatPassword}>
+            <button className="icon-button" onClick={handlePassword}>
               {controlPassword === "text" ? (
                 <FaRegEye className="icon" />
               ) : (
