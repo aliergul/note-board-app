@@ -11,6 +11,7 @@ const app = express();
 
 // Routes
 const authRoutes = require("./routes/authRoutes");
+const noteRoutes = require("./routes/noteRoutes");
 
 const jwt = require("jsonwebtoken");
 const { authenticateToken } = require("./utilities");
@@ -28,6 +29,7 @@ app.get("/", (req, res) => {
 });
 
 app.use(authRoutes);
+app.use(noteRoutes);
 
 app.listen(8000);
 
