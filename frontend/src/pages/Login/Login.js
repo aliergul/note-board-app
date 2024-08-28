@@ -3,6 +3,8 @@ import { useTranslation } from "react-i18next";
 import CustomInputContainer from "../../components/CustomInputContainer";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa6";
 import validateEmail from "../../utils/validateEmail";
+import authService from "../../services/authService";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const { t } = useTranslation();
@@ -10,8 +12,11 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [controlPassword, setControlPassword] = useState("");
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
-  const handlePassword = () => {
+  const handlePassword = (e) => {
+    e.preventDefault();
     var x = document.getElementById("password-input");
     if (x.type === "password") {
       x.type = "text";
@@ -24,10 +29,20 @@ const Login = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    setLoading(true);
     if (!validateEmail(email) || !password) {
       setError(t("login.input_error"));
     } else {
       setError(null);
+    }
+
+    try {
+      await authService.login(email, password);
+      navigate("/dashboard");
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -52,7 +67,7 @@ const Login = () => {
               type="password"
             />
 
-            <button className="icon-button" onClick={handlePassword}>
+            <button className="icon-button" onClick={(e) => handlePassword(e)}>
               {controlPassword === "text" ? (
                 <FaRegEye className="icon" />
               ) : (
