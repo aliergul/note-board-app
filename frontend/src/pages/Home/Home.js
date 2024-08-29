@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import NoteCard from "../../components/NoteCard/NoteCard";
 import { MdAdd } from "react-icons/md";
 import NoteCardModal from "../../components/NoteCard/NoteCardModal";
+import authService from "../../services/authService";
+import Header from "../../components/Header";
 
 const exampleData = {
   title: "Note Board Test Title",
@@ -27,9 +29,27 @@ const exampleData = {
 const Home = () => {
   const [openModal, setOpenModal] = useState(false);
   const [modalType, setModalType] = useState("add");
+  const [error, setError] = useState("");
+  const [userData, setUserData] = useState({});
+
+  const getUser = async () => {
+    try {
+      const user = await authService.getUser();
+      setUserData(user);
+      console.log("userData", userData);
+    } catch (err) {
+      setError(err.message);
+    }
+  };
+
+  useEffect(() => {
+    getUser();
+  }, []); // eslint-disable-line
 
   return (
     <>
+      <Header userData={userData} />
+      <div>{error && error}</div>
       <div className="dashboard-content">
         <NoteCard
           title={exampleData?.title}

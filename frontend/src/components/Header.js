@@ -7,7 +7,7 @@ import Dropdown from "react-bootstrap/Dropdown";
 import ProfileCard from "./ProfileCard";
 import SearchInput from "./SearchInput";
 
-const Header = () => {
+const Header = ({ userData }) => {
   const { t } = useTranslation();
   const [selectedLanguage, setSelectedLanguage] = useState(i18next.language);
 
@@ -21,7 +21,7 @@ const Header = () => {
       <span>Note Board</span>
       <SearchInput />
       <div className="d-flex gap-5">
-        <ProfileCard />
+        <ProfileCard userData={userData} />
         <Dropdown>
           <Dropdown.Toggle variant="secondary" id="dropdown-basic">
             <img

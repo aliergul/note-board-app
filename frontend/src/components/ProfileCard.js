@@ -1,14 +1,23 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
-const ProfileCard = () => {
-  const userName = "test";
-
+const ProfileCard = ({ userData }) => {
+  const navigate = useNavigate();
+  console.log(userData);
+  const handleLogOut = () => {
+    localStorage.clear();
+    navigate("/login");
+  };
   return (
     <div className="profile-container">
-      <div className="profile-card">{userName[0].toUpperCase()}</div>
+      <div className="profile-card">
+        {userData && userData?.fullName?.[0].toUpperCase()}
+      </div>
       <div className="profile-info">
-        <span>{userName}</span>
-        <a href="/login">logout</a>
+        <span>{userData && userData?.fullName}</span>
+        <a href="/login" onClick={handleLogOut}>
+          logout
+        </a>
       </div>
     </div>
   );
