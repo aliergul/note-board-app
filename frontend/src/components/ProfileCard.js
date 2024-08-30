@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 const ProfileCard = ({ userData }) => {
   const navigate = useNavigate();
-  console.log(userData);
+
   const handleLogOut = () => {
     localStorage.clear();
     navigate("/login");

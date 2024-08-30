@@ -20,6 +20,27 @@ const login = async (email, password) => {
   }
 };
 
+const signUp = async (fullName, email, password) => {
+  try {
+    const response = await axiosInstance.post("/create-account", {
+      fullName: fullName,
+      email: email,
+      password: password,
+    });
+
+    if (response.data && response.data.accessToken) {
+      localStorage.setItem("token", response.data.accessToken);
+      return { success: true };
+    }
+  } catch (error) {
+    if (error.response && error.response.data && error.response.data.message) {
+      throw new Error(error.response.data.message);
+    } else {
+      throw new Error("An unexpected error occurred. Please try again.");
+    }
+  }
+};
+
 const getUser = async () => {
   try {
     const response = await axiosInstance.get("/get-user");
@@ -47,6 +68,7 @@ const getUser = async () => {
 const authService = {
   login,
   getUser,
+  signUp,
 };
 
 export default authService;

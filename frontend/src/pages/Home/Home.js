@@ -36,7 +36,6 @@ const Home = () => {
     try {
       const user = await authService.getUser();
       setUserData(user);
-      console.log("userData", userData);
     } catch (err) {
       setError(err.message);
     }

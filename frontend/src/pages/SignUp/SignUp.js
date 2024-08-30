@@ -3,6 +3,8 @@ import { useTranslation } from "react-i18next";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa6";
 import CustomInputContainer from "../../components/CustomInputContainer";
 import validateEmail from "../../utils/validateEmail";
+import authService from "../../services/authService";
+import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
   const { t } = useTranslation();
@@ -12,8 +14,10 @@ const SignUp = () => {
   const [repeatPassword, setRepeatPassword] = useState(null);
   const [controlPassword, setControlPassword] = useState("");
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
-  const handlePassword = () => {
+  const handlePassword = (e) => {
+    e.preventDefault();
     var x = document.getElementById("password-input");
     var y = document.getElementById("repeat-password-input");
 
@@ -40,6 +44,13 @@ const SignUp = () => {
     if (password !== repeatPassword) {
       setError(t("signup.password_error"));
     }
+
+    try {
+      await authService.signUp(username, email, password);
+      navigate("/dashboard");
+    } catch (err) {
+      setError(err.message);
+    }
   };
 
   return (
@@ -50,14 +61,14 @@ const SignUp = () => {
           <div>
             <CustomInputContainer
               placeholder={t("signup.username")}
-              value={username}
+              value={username ?? ""}
               setValue={setUsername}
             />
           </div>
           <div>
             <CustomInputContainer
               placeholder={t("signup.email")}
-              value={email}
+              value={email ?? ""}
               setValue={setEmail}
             />
           </div>
@@ -65,12 +76,12 @@ const SignUp = () => {
             <CustomInputContainer
               id="password-input"
               placeholder={t("signup.password")}
-              value={password}
+              value={password ?? ""}
               setValue={setPassword}
               type="password"
             />
 
-            <button className="icon-button" onClick={handlePassword}>
+            <button className="icon-button" onClick={(e) => handlePassword(e)}>
               {controlPassword === "text" ? (
                 <FaRegEye className="icon" />
               ) : (
@@ -83,12 +94,12 @@ const SignUp = () => {
             <CustomInputContainer
               id="repeat-password-input"
               placeholder={t("signup.repeat_password")}
-              value={repeatPassword}
+              value={repeatPassword ?? ""}
               setValue={setRepeatPassword}
               type="password"
             />
 
-            <button className="icon-button" onClick={handlePassword}>
+            <button className="icon-button" onClick={(e) => handlePassword(e)}>
               {controlPassword === "text" ? (
                 <FaRegEye className="icon" />
               ) : (
@@ -100,7 +111,7 @@ const SignUp = () => {
           {error && <p className="error-text">{error}</p>}
           <button
             type="submit"
-            class="action-btn btn btn-primary"
+            className="action-btn btn btn-primary"
             style={{ marginTop: 10, marginBottom: 10 }}
           >
             {t("signup.title")}
