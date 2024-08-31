@@ -5,7 +5,7 @@ const getNotes = async () => {
     const response = await axiosInstance.get("/get-notes");
     if (response.data && response.data.notes) {
       localStorage.setItem("notes", JSON.stringify(response.data.notes));
-      return response.data.user;
+      return response.data.notes;
     } else {
       throw new Error("Beklenmeyen bir hata oluştu. Lütfen tekrar deneyin.");
     }

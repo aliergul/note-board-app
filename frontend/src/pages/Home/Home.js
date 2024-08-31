@@ -57,24 +57,26 @@ const Home = () => {
     getNotes();
   }, []); // eslint-disable-line
 
-  console.log("notes", notes);
   return (
     <>
       <Header userData={userData} />
       <div>{error && error}</div>
       <div className="dashboard-content">
-        <NoteCard
-          title={exampleData?.title}
-          inserttime={exampleData?.inserttime}
-          content={exampleData?.content}
-          tags={exampleData?.tags}
-          isPinned={exampleData?.isPinned}
-          handlePinNote={() => {}}
-          handleEdit={() => {}}
-          handleDelete={() => {}}
-          setType={setModalType}
-          setOpen={setOpenModal}
-        />
+        {notes?.map((item) => (
+          <NoteCard
+            key={item?._id}
+            title={item?.title}
+            inserttime={item?.inserttime}
+            content={item?.content}
+            tags={item?.tags}
+            isPinned={item?.isPinned}
+            handlePinNote={() => {}}
+            handleEdit={() => {}}
+            handleDelete={() => {}}
+            setType={setModalType}
+            setOpen={setOpenModal}
+          />
+        ))}
       </div>
       <div
         className="dashboard-content-add"

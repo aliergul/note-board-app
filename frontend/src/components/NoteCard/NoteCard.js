@@ -29,8 +29,7 @@ const NoteCard = ({
               <RiPushpinLine size={20} className="pin-button" />
             )}
           </div>
-          <span>{moment(inserttime * 1000).format("DD/MM/YYYY HH:mm")}</span>
-          {/* <span>{moment(endtime * 1000).format("DD/MM/YYYY HH:mm")}</span> */}
+          <span>{moment(inserttime).format("DD/MM/YYYY HH:mm")}</span>
         </div>
         <hr />
         <p>{content}</p>
