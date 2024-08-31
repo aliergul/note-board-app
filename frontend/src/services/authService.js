@@ -45,7 +45,7 @@ const getUser = async () => {
   try {
     const response = await axiosInstance.get("/get-user");
     if (response.data && response.data.user) {
-      localStorage.setItem("user", JSON.stringify(response.data.user)); // Kullanıcı bilgilerini localStorage'a kaydediyoruz
+      localStorage.setItem("user", JSON.stringify(response.data.user));
       return response.data.user;
     } else {
       throw new Error("Kullanıcı bilgileri alınamadı.");

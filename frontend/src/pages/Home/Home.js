@@ -4,6 +4,7 @@ import { MdAdd } from "react-icons/md";
 import NoteCardModal from "../../components/NoteCard/NoteCardModal";
 import authService from "../../services/authService";
 import Header from "../../components/Header";
+import noteService from "../../services/noteService";
 
 const exampleData = {
   title: "Note Board Test Title",
@@ -31,6 +32,7 @@ const Home = () => {
   const [modalType, setModalType] = useState("add");
   const [error, setError] = useState("");
   const [userData, setUserData] = useState({});
+  const [notes, setNotes] = useState([]);
 
   const getUser = async () => {
     try {
@@ -41,10 +43,21 @@ const Home = () => {
     }
   };
 
+  const getNotes = async () => {
+    try {
+      const allNotes = await noteService.getNotes();
+      setNotes(allNotes);
+    } catch (err) {
+      setError(err.message);
+    }
+  };
+
   useEffect(() => {
     getUser();
+    getNotes();
   }, []); // eslint-disable-line
 
+  console.log("notes", notes);
   return (
     <>
       <Header userData={userData} />
