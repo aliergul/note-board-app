@@ -1,4 +1,5 @@
 const User = require("../../models/user.model");
+const jwt = require("jsonwebtoken");
 
 exports.createAccount = async (req, res) => {
   const { fullName, email, password } = req.body;
