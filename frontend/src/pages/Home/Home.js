@@ -92,6 +92,7 @@ const Home = () => {
         setOpen={setOpenModal}
         type={modalType}
         noteCard={exampleData}
+        getNotes={getNotes}
       />
     </>
   );

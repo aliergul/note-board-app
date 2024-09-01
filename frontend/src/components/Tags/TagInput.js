@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import chroma from "chroma-js";
 import CreatableSelect from "react-select/creatable";
 
@@ -36,7 +36,7 @@ const colourStyles = {
   },
 };
 
-const TagInput = ({ tags }) => {
+const TagInput = ({ tags, setTags }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [options, setOptions] = useState(
     tags.map((tag) => ({
@@ -62,6 +62,10 @@ const TagInput = ({ tags }) => {
       setValue((prev) => [...prev, newOption]);
     }, 1000);
   };
+
+  useEffect(() => {
+    setTags(options);
+  }, [options]); //eslint-disable-line
 
   return (
     <div>

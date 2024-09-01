@@ -1,17 +1,43 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import TagInput from "../Tags/TagInput";
+import noteService from "../../services/noteService";
 
-const NoteCardAddEdit = ({ open, setOpen, type = "add", data }) => {
+const NoteCardAddEdit = ({ open, setOpen, type = "add", data, getNotes }) => {
   const { t } = useTranslation();
+  const [tags, setTags] = useState(type === "edit" ? data?.tags : "");
 
   const handleClose = () => {
     setOpen(false);
   };
 
-  const handleAction = () => {
-    console.log("type: ", type);
+  const handleAction = async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(e.target);
+    const formObject = {
+      title: formData.get("title"),
+      content: formData.get("content"),
+      //tags: tags,
+    };
+
+    try {
+      if (type === "add") {
+        const response = await noteService.addNote(
+          formObject.title,
+          formObject.content,
+          formObject.tags
+        );
+      } else if (type === "edit") {
+        console.log("...");
+      }
+      getNotes();
+      handleClose();
+    } catch (err) {
+      console.error("Not ekleme sırasında hata oluştu:", err.message);
+      //setError(err.message);
+    }
   };
 
   return (
@@ -24,12 +50,13 @@ const NoteCardAddEdit = ({ open, setOpen, type = "add", data }) => {
         </Modal.Header>
         <Modal.Body>
           <div className="add-edit-modal-container">
-            <Form onSubmit={handleAction}>
+            <Form onSubmit={(e) => handleAction(e)}>
               <Form.Group className="mb-3">
                 <Form.Label className="titles">
                   {t("modal.form_title")}
                 </Form.Label>
                 <Form.Control
+                  name="title"
                   type="text"
                   placeholder={t("modal.form_title_placeholder")}
                   defaultValue={type === "edit" ? data?.title : ""}
@@ -41,6 +68,7 @@ const NoteCardAddEdit = ({ open, setOpen, type = "add", data }) => {
                   {t("modal.form_content_title")}
                 </Form.Label>
                 <Form.Control
+                  name="content"
                   as="textarea"
                   rows={3}
                   placeholder={t("modal.form_content_placeholder")}
@@ -52,7 +80,7 @@ const NoteCardAddEdit = ({ open, setOpen, type = "add", data }) => {
                 <Form.Label className="titles">
                   {t("modal.form_tags_title")}
                 </Form.Label>
-                <TagInput tags={data?.tags} />
+                <TagInput tags={data?.tags} setTags={setTags} />
               </Form.Group>
 
               <Modal.Footer>
