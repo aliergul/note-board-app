@@ -56,6 +56,7 @@ const NoteCard = ({
               onClick={() => {
                 setType("edit");
                 setOpen(true);
+                handleEdit();
               }}
             />
           </div>

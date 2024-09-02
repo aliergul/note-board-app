@@ -6,33 +6,13 @@ import authService from "../../services/authService";
 import Header from "../../components/Header";
 import noteService from "../../services/noteService";
 
-const exampleData = {
-  title: "Note Board Test Title",
-  inserttime: 1722599696,
-  modified_date: 1722956068,
-  content:
-    "Bu deneme contenti için yazılmış bir yazıdır. Bu deneme contenti için yazılmış bir yazıdır.",
-  tags: [
-    {
-      tag_id: "1",
-      name: "test",
-      color: "#AF0909",
-    },
-    {
-      tag_id: "2",
-      name: "todo",
-      color: "#14DB24",
-    },
-  ],
-  isPinned: true,
-};
-
 const Home = () => {
   const [openModal, setOpenModal] = useState(false);
   const [modalType, setModalType] = useState("add");
   const [error, setError] = useState("");
   const [userData, setUserData] = useState({});
   const [notes, setNotes] = useState([]);
+  const [selectedNote, setSelectedNote] = useState(null);
 
   const getUser = async () => {
     try {
@@ -50,6 +30,10 @@ const Home = () => {
     } catch (err) {
       setError(err.message);
     }
+  };
+
+  const handleEdit = (note) => {
+    setSelectedNote(note);
   };
 
   useEffect(() => {
@@ -71,7 +55,9 @@ const Home = () => {
             tags={item?.tags}
             isPinned={item?.isPinned}
             handlePinNote={() => {}}
-            handleEdit={() => {}}
+            handleEdit={() => {
+              handleEdit(item);
+            }}
             handleDelete={() => {}}
             setType={setModalType}
             setOpen={setOpenModal}
@@ -91,7 +77,7 @@ const Home = () => {
         open={openModal}
         setOpen={setOpenModal}
         type={modalType}
-        noteCard={exampleData}
+        noteCard={selectedNote}
         getNotes={getNotes}
       />
     </>

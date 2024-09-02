@@ -5,6 +5,7 @@ import TagInput from "../Tags/TagInput";
 import noteService from "../../services/noteService";
 
 const NoteCardAddEdit = ({ open, setOpen, type = "add", data, getNotes }) => {
+  console.log("data", data);
   const { t } = useTranslation();
   const [tags, setTags] = useState(type === "edit" ? data?.tags : "");
 
@@ -24,13 +25,18 @@ const NoteCardAddEdit = ({ open, setOpen, type = "add", data, getNotes }) => {
 
     try {
       if (type === "add") {
-        const response = await noteService.addNote(
+        await noteService.addNote(
           formObject.title,
           formObject.content,
           formObject.tags
         );
       } else if (type === "edit") {
-        console.log("...");
+        await noteService.editNote(
+          data._id,
+          formObject.title,
+          formObject.content,
+          formObject.tags
+        );
       }
       getNotes();
       handleClose();
