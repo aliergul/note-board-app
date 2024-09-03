@@ -35,6 +35,9 @@ const Home = () => {
   const handleEdit = (note) => {
     setSelectedNote(note);
   };
+  const handleDelete = (note) => {
+    setSelectedNote(note);
+  };
 
   useEffect(() => {
     getUser();
@@ -58,7 +61,9 @@ const Home = () => {
             handleEdit={() => {
               handleEdit(item);
             }}
-            handleDelete={() => {}}
+            handleDelete={() => {
+              handleDelete(item);
+            }}
             setType={setModalType}
             setOpen={setOpenModal}
           />

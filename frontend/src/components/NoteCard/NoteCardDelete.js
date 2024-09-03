@@ -1,17 +1,28 @@
 import React from "react";
 import { Button, Modal } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
+import noteService from "../../services/noteService";
 
-const NoteCardDelete = ({ open, setOpen, data }) => {
+const NoteCardDelete = ({ open, setOpen, data, getNotes }) => {
   const { t } = useTranslation();
 
   const handleClose = () => {
     setOpen(false);
   };
 
-  const handleAction = () => {
-    console.log("test");
+  const handleAction = async (e) => {
+    e.preventDefault();
+
+    try {
+      await noteService.deleteNote(data._id);
+      getNotes();
+      handleClose();
+    } catch (err) {
+      console.error("Not ekleme sırasında hata oluştu:", err.message);
+      //setError(err.message);
+    }
   };
+
   return (
     <>
       <Modal show={open} onHide={handleClose}>

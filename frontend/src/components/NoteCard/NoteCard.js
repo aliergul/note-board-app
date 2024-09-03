@@ -49,6 +49,7 @@ const NoteCard = ({
               onClick={() => {
                 setType("delete");
                 setOpen(true);
+                handleDelete();
               }}
             />
             <MdEdit

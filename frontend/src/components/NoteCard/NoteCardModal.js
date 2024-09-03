@@ -16,7 +16,12 @@ const NoteCardModal = ({ open, setOpen, type, noteCard, getNotes }) => {
               getNotes={getNotes}
             />
           ) : (
-            <NoteCardDelete open={open} setOpen={setOpen} data={noteCard} />
+            <NoteCardDelete
+              open={open}
+              setOpen={setOpen}
+              data={noteCard}
+              getNotes={getNotes}
+            />
           )}
         </>
       )}

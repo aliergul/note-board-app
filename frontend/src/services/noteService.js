@@ -74,10 +74,35 @@ const editNote = async (noteId, title, content, tags) => {
   }
 };
 
+const deleteNote = async (noteId) => {
+  try {
+    const response = await axiosInstance.delete("/delete-note/" + noteId);
+
+    if (response.data && response.data.note) {
+      const newNote = response.data.note;
+      const updatedNotes = [
+        ...JSON.parse(localStorage.getItem("notes")),
+        newNote,
+      ];
+      localStorage.setItem("notes", JSON.stringify(updatedNotes));
+      return updatedNotes;
+    } else {
+      throw new Error("Beklenmeyen bir hata oluştu. Lütfen tekrar deneyin.");
+    }
+  } catch (error) {
+    if (error.response && error.response.data && error.response.data.message) {
+      throw new Error(error.response.data.message);
+    } else {
+      throw new Error("Beklenmeyen bir hata oluştu. Lütfen tekrar deneyin.");
+    }
+  }
+};
+
 const noteService = {
   getNotes,
   addNote,
   editNote,
+  deleteNote,
 };
 
 export default noteService;
