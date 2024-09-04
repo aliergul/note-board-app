@@ -5,9 +5,8 @@ import TagInput from "../Tags/TagInput";
 import noteService from "../../services/noteService";
 
 const NoteCardAddEdit = ({ open, setOpen, type = "add", data, getNotes }) => {
-  console.log("data", data);
   const { t } = useTranslation();
-  const [tags, setTags] = useState(type === "edit" ? data?.tags : "");
+  const [tags, setTags] = useState(type === "edit" ? data?.tags : ""); //eslint-disable-line
 
   const handleClose = () => {
     setOpen(false);

@@ -36,6 +36,7 @@ const Home = () => {
   const handleEdit = (note) => {
     setSelectedNote(note);
   };
+
   const handleDelete = (note) => {
     setSelectedNote(note);
   };

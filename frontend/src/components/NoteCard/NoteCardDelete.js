@@ -10,15 +10,13 @@ const NoteCardDelete = ({ open, setOpen, data, getNotes }) => {
     setOpen(false);
   };
 
-  const handleAction = async (e) => {
-    e.preventDefault();
-
+  const handleAction = async () => {
     try {
       await noteService.deleteNote(data._id);
       getNotes();
       handleClose();
     } catch (err) {
-      console.error("Not ekleme sırasında hata oluştu:", err.message);
+      console.error("Not silme sırasında hata oluştu:", err.message);
       //setError(err.message);
     }
   };

@@ -78,14 +78,12 @@ const deleteNote = async (noteId) => {
   try {
     const response = await axiosInstance.delete("/delete-note/" + noteId);
 
-    if (response.data && response.data.note) {
-      const newNote = response.data.note;
-      const updatedNotes = [
-        ...JSON.parse(localStorage.getItem("notes")),
-        newNote,
-      ];
+    if (response.data && response.data.error === false) {
+      const existingNotes = JSON.parse(localStorage.getItem("notes")) || [];
+      const updatedNotes = existingNotes.filter((note) => note._id !== noteId);
+
       localStorage.setItem("notes", JSON.stringify(updatedNotes));
-      return updatedNotes;
+      return { success: true };
     } else {
       throw new Error("Beklenmeyen bir hata oluştu. Lütfen tekrar deneyin.");
     }
