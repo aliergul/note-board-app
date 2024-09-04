@@ -2,6 +2,7 @@
   "language_tr": "Türkçe",
   "language_en": "İngilizce",
   "search_placeholder": "Notlarda arama yapabilirsiniz.",
+  "empty_dashboard": "İlk notunu eklemek için sağ alttaki butonu kullanabilirsin.",
   "login": {
     "title": "Giriş Yap",
     "email": "Email",

@@ -5,6 +5,7 @@ import NoteCardModal from "../../components/NoteCard/NoteCardModal";
 import authService from "../../services/authService";
 import Header from "../../components/Header";
 import noteService from "../../services/noteService";
+import EmptyCard from "../../components/EmptyCard/EmptyCard";
 
 const Home = () => {
   const [openModal, setOpenModal] = useState(false);
@@ -49,25 +50,29 @@ const Home = () => {
       <Header userData={userData} />
       <div>{error && error}</div>
       <div className="dashboard-content">
-        {notes?.map((item) => (
-          <NoteCard
-            key={item?._id}
-            title={item?.title}
-            inserttime={item?.inserttime}
-            content={item?.content}
-            tags={item?.tags}
-            isPinned={item?.isPinned}
-            handlePinNote={() => {}}
-            handleEdit={() => {
-              handleEdit(item);
-            }}
-            handleDelete={() => {
-              handleDelete(item);
-            }}
-            setType={setModalType}
-            setOpen={setOpenModal}
-          />
-        ))}
+        {notes?.length > 0 ? (
+          notes?.map((item) => (
+            <NoteCard
+              key={item?._id}
+              title={item?.title}
+              inserttime={item?.inserttime}
+              content={item?.content}
+              tags={item?.tags}
+              isPinned={item?.isPinned}
+              handlePinNote={() => {}}
+              handleEdit={() => {
+                handleEdit(item);
+              }}
+              handleDelete={() => {
+                handleDelete(item);
+              }}
+              setType={setModalType}
+              setOpen={setOpenModal}
+            />
+          ))
+        ) : (
+          <EmptyCard />
+        )}
       </div>
       <div
         className="dashboard-content-add"

@@ -39,7 +39,7 @@ const colourStyles = {
 const TagInput = ({ tags, setTags }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [options, setOptions] = useState(
-    tags.map((tag) => ({
+    tags?.map((tag) => ({
       value: tag.tag_id,
       label: tag.name,
       color: tag.color,
