@@ -7,7 +7,7 @@ import Dropdown from "react-bootstrap/Dropdown";
 import ProfileCard from "./ProfileCard";
 import SearchInput from "./SearchInput";
 
-const Header = ({ userData }) => {
+const Header = ({ userData, search, getNotes }) => {
   const { t } = useTranslation();
   const [selectedLanguage, setSelectedLanguage] = useState(i18next.language);
 
@@ -19,7 +19,7 @@ const Header = ({ userData }) => {
   return (
     <div className="header">
       <span>Note Board</span>
-      <SearchInput />
+      <SearchInput search={search} getNotes={getNotes} />
       <div className="d-flex gap-5">
         <ProfileCard userData={userData} />
         <Dropdown>

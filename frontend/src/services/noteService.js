@@ -96,11 +96,29 @@ const deleteNote = async (noteId) => {
   }
 };
 
+const searchNotes = async (query) => {
+  try {
+    const response = await axiosInstance.get("/search-notes/", {
+      params: query,
+    });
+    if (response.data && response.data.notes) {
+      return { success: true, notes: response.data.notes };
+    }
+  } catch (error) {
+    if (error.response && error.response.data && error.response.data.message) {
+      throw new Error(error.response.data.message);
+    } else {
+      throw new Error("Beklenmeyen bir hata oluştu. Lütfen tekrar deneyin.");
+    }
+  }
+};
+
 const noteService = {
   getNotes,
   addNote,
   editNote,
   deleteNote,
+  searchNotes,
 };
 
 export default noteService;

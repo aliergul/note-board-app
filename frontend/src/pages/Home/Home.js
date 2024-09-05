@@ -33,6 +33,15 @@ const Home = () => {
     }
   };
 
+  const search = async (query) => {
+    try {
+      const searchData = await noteService.searchNotes(query);
+      setNotes(searchData.notes);
+    } catch (err) {
+      setError(err.message);
+    }
+  };
+
   const handleEdit = (note) => {
     setSelectedNote(note);
   };
@@ -48,7 +57,7 @@ const Home = () => {
 
   return (
     <>
-      <Header userData={userData} />
+      <Header userData={userData} search={search} getNotes={getNotes} />
       <div>{error && error}</div>
       <div className="dashboard-content">
         {notes?.length > 0 ? (

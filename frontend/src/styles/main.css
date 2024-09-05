@@ -180,14 +180,17 @@ hr {
   display: flex;
   justify-content: center;
   width: 50%;
+  position: relative;
 }
 
 .search-form input {
   width: 80%;
   padding: 10px;
   margin-top: 5px;
+  margin-bottom: 5px;
   border: 1px solid #ccc;
   border-radius: 4px;
+  padding-right: 30px;
 }
 
 .search-form button {
@@ -197,6 +200,18 @@ hr {
   margin-left: 5px;
   cursor: pointer;
   border: none;
+}
+.clear-button {
+  position: absolute;
+  right: 110px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  color: #131842 !important;
+  background-color: white !important;
 }
 
 /* Dashboard */
