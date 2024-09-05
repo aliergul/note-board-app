@@ -6,6 +6,7 @@ import authService from "../../services/authService";
 import Header from "../../components/Header";
 import noteService from "../../services/noteService";
 import EmptyCard from "../../components/EmptyCard/EmptyCard";
+import NoData from "../../components/NoData/NoData";
 
 const Home = () => {
   const [openModal, setOpenModal] = useState(false);
@@ -14,6 +15,7 @@ const Home = () => {
   const [userData, setUserData] = useState({});
   const [notes, setNotes] = useState([]);
   const [selectedNote, setSelectedNote] = useState(null);
+  const [noData, setNoData] = useState(false);
 
   const getUser = async () => {
     try {
@@ -37,6 +39,11 @@ const Home = () => {
     try {
       const searchData = await noteService.searchNotes(query);
       setNotes(searchData.notes);
+      if (searchData.notes?.length < 1) {
+        setNoData(true);
+      } else {
+        setNoData(false);
+      }
     } catch (err) {
       setError(err.message);
     }
@@ -80,6 +87,8 @@ const Home = () => {
               setOpen={setOpenModal}
             />
           ))
+        ) : noData ? (
+          <NoData />
         ) : (
           <EmptyCard />
         )}

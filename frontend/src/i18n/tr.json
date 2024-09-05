@@ -3,6 +3,7 @@
   "language_en": "İngilizce",
   "search_placeholder": "Notlarda arama yapabilirsiniz.",
   "empty_dashboard": "İlk notunu eklemek için sağ alttaki butonu kullanabilirsin.",
+  "no_data_found": "Aramanızla eşleşen bir not bulunamadı.",
   "login": {
     "title": "Giriş Yap",
     "email": "Email",
