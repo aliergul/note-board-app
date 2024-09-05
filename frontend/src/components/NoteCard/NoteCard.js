@@ -23,11 +23,13 @@ const NoteCard = ({
         <div className="dashboard-item-header">
           <div className="dashboard-header-content">
             <span>{title}</span>
-            {isPinned ? (
-              <RiPushpin2Fill size={20} className="pin-button" />
-            ) : (
-              <RiPushpinLine size={20} className="pin-button" />
-            )}
+            <div onClick={handlePinNote}>
+              {isPinned ? (
+                <RiPushpin2Fill size={20} className="pin-button" />
+              ) : (
+                <RiPushpinLine size={20} className="pin-button" />
+              )}
+            </div>
           </div>
           <span>{moment(inserttime).format("DD/MM/YYYY HH:mm")}</span>
         </div>

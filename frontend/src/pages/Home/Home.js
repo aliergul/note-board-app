@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import NoteCard from "../../components/NoteCard/NoteCard";
-import { MdAdd } from "react-icons/md";
 import NoteCardModal from "../../components/NoteCard/NoteCardModal";
 import authService from "../../services/authService";
 import Header from "../../components/Header";
 import noteService from "../../services/noteService";
 import EmptyCard from "../../components/EmptyCard/EmptyCard";
 import NoData from "../../components/NoData/NoData";
+import { MdAdd } from "react-icons/md";
 
 const Home = () => {
   const [openModal, setOpenModal] = useState(false);
@@ -49,6 +49,15 @@ const Home = () => {
     }
   };
 
+  const pinNote = async (item) => {
+    try {
+      await noteService.updatePinNote(item);
+      getNotes();
+    } catch (err) {
+      setError(err.message);
+    }
+  };
+
   const handleEdit = (note) => {
     setSelectedNote(note);
   };
@@ -76,7 +85,9 @@ const Home = () => {
               content={item?.content}
               tags={item?.tags}
               isPinned={item?.isPinned}
-              handlePinNote={() => {}}
+              handlePinNote={() => {
+                pinNote(item);
+              }}
               handleEdit={() => {
                 handleEdit(item);
               }}
