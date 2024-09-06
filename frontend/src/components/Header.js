@@ -4,10 +4,9 @@ import { useTranslation } from "react-i18next";
 import tr from "../assets/tr.svg";
 import en from "../assets/en.svg";
 import Dropdown from "react-bootstrap/Dropdown";
-import ProfileCard from "./ProfileCard";
 import SearchInput from "./SearchInput";
 
-const Header = ({ userData, search, getNotes }) => {
+const Header = ({ setNotes, getNotes, setError, setNoData }) => {
   const { t } = useTranslation();
   const [selectedLanguage, setSelectedLanguage] = useState(i18next.language);
 
@@ -17,11 +16,14 @@ const Header = ({ userData, search, getNotes }) => {
   };
 
   return (
-    <div className="header">
-      <span>Note Board</span>
-      <SearchInput search={search} getNotes={getNotes} />
-      <div className="d-flex gap-5">
-        <ProfileCard userData={userData} />
+    <div className="flex justify-between">
+      <SearchInput
+        setNotes={setNotes}
+        getNotes={getNotes}
+        setError={setError}
+        setNoData={setNoData}
+      />
+      <div className="">
         <Dropdown>
           <Dropdown.Toggle variant="secondary" id="dropdown-basic">
             <img

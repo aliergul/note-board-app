@@ -35,20 +35,6 @@ const Home = () => {
     }
   };
 
-  const search = async (query) => {
-    try {
-      const searchData = await noteService.searchNotes(query);
-      setNotes(searchData.notes);
-      if (searchData.notes?.length < 1) {
-        setNoData(true);
-      } else {
-        setNoData(false);
-      }
-    } catch (err) {
-      setError(err.message);
-    }
-  };
-
   const pinNote = async (item) => {
     try {
       await noteService.updatePinNote(item);
@@ -72,8 +58,14 @@ const Home = () => {
   }, []); // eslint-disable-line
 
   return (
-    <>
-      {/* <Header userData={userData} search={search} getNotes={getNotes} /> */}
+    <div className="bg-red-300 ">
+      <Header
+        userData={userData}
+        setNotes={setNotes}
+        setError={setError}
+        getNotes={getNotes}
+        setNoData={setNoData}
+      />
       <div>{error && error}</div>
       <div className="dashboard-content">
         {notes?.length > 0 ? (
@@ -120,7 +112,7 @@ const Home = () => {
         noteCard={selectedNote}
         getNotes={getNotes}
       />
-    </>
+    </div>
   );
 };
 

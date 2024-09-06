@@ -5,25 +5,15 @@ import Sidebar from "./components/Sidebar/Sidebar";
 import Tags from "./pages/Tags/Tags";
 import Footer from "./components/Footer/Footer";
 
-// const routes = (
-//   <Router>
-//     <Routes>
-//       <Route path="/dashboard" exact element={<Home />} />
-//       <Route path="/login" exact element={<Login />} />
-//       <Route path="/signup" exact element={<SignUp />} />
-//     </Routes>
-//   </Router>
-// );
-
 function App() {
   return (
     <Router>
       <div className="min-h-screen flex flex-col">
-        <div className="flex flex-1">
+        <div className="flex flex-1 overflow-hidden">
           <div className="flex flex-col justify-between w-56 p-4 bg-palette_dark">
             <Sidebar />
           </div>
-          <div className="flex-1 p-6 bg-main">
+          <div className="flex-1 p-6 bg-main overflow-y-auto">
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/dashboard" element={<Home />} />

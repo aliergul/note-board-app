@@ -1,41 +1,52 @@
-import React, { useState } from "react";
+import Search from "antd/es/input/Search";
+import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { IoMdSearch } from "react-icons/io";
+import noteService from "../services/noteService";
 
-const SearchInput = ({ search, getNotes }) => {
+const SearchInput = ({ setNotes, getNotes, setError, setNoData }) => {
   const { t } = useTranslation();
   const [searchQuery, setSearchQuery] = useState("");
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (searchQuery === "") {
-      getNotes();
-    }
-    search({ query: searchQuery });
-  };
+  const [loading, setLoading] = useState(false);
 
   const handleClearSearch = () => {
     setSearchQuery("");
-    getNotes();
   };
 
+  const search = async () => {
+    setLoading(true);
+    try {
+      const searchData = await noteService.searchNotes({ query: searchQuery });
+      setNotes(searchData.notes);
+      if (searchData.notes?.length < 1) {
+        setNoData(true);
+      } else {
+        setNoData(false);
+      }
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    if (searchQuery === "") {
+      getNotes();
+    }
+  }, [searchQuery]); //eslint-disable-line
+
   return (
-    <div className="search-container">
-      <div className="search-form">
-        <input
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          placeholder={t("search_placeholder")}
-        />
-        {searchQuery && (
-          <button className="clear-button" onClick={handleClearSearch}>
-            X
-          </button>
-        )}
-        <button onClick={(e) => handleSubmit(e)}>
-          <IoMdSearch size={30} />
-        </button>
-      </div>
+    <div className="">
+      <Search
+        placeholder={t("search_placeholder")}
+        loading={loading}
+        value={searchQuery}
+        onSearch={search}
+        onChange={(e) => setSearchQuery(e.target.value)}
+        allowClear
+        onClear={handleClearSearch}
+        size="large"
+      />
     </div>
   );
 };
