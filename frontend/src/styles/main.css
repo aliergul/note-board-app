@@ -7,14 +7,13 @@
   html,
   body,
   #root {
-    @apply h-full bg-red-400 text-white antialiased;
+    @apply h-full bg-main text-black antialiased;
   }
   #root {
     @apply flex flex-col;
   }
   .wrapper {
     height: 100%;
-    /* height: calc(100% - theme("spacing.24")); bottom bar eklemek istersen bu kodu kullan*/
     @apply flex;
   }
   .scrollable {

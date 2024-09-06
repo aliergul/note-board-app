@@ -73,7 +73,7 @@ const Home = () => {
 
   return (
     <>
-      <Header userData={userData} search={search} getNotes={getNotes} />
+      {/* <Header userData={userData} search={search} getNotes={getNotes} /> */}
       <div>{error && error}</div>
       <div className="dashboard-content">
         {notes?.length > 0 ? (

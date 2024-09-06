@@ -1,25 +1,41 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home/Home";
-import Login from "./pages/Login/Login";
-import SignUp from "./pages/SignUp/SignUp";
 import "../src/styles/main.css";
+import Sidebar from "./components/Sidebar/Sidebar";
+import Tags from "./pages/Tags/Tags";
+import Footer from "./components/Footer/Footer";
 
-const routes = (
-  <Router>
-    <Routes>
-      <Route path="/dashboard" exact element={<Home />} />
-      <Route path="/login" exact element={<Login />} />
-      <Route path="/signup" exact element={<SignUp />} />
-    </Routes>
-  </Router>
-);
+// const routes = (
+//   <Router>
+//     <Routes>
+//       <Route path="/dashboard" exact element={<Home />} />
+//       <Route path="/login" exact element={<Login />} />
+//       <Route path="/signup" exact element={<SignUp />} />
+//     </Routes>
+//   </Router>
+// );
 
 function App() {
   return (
-    <div className="wrapper">
-      <div>test</div>
-      {/* <div className="content">{routes}</div> */}
-    </div>
+    <Router>
+      <div className="min-h-screen flex flex-col">
+        <div className="flex flex-1">
+          <div className="flex flex-col justify-between w-56 p-4 bg-palette_dark">
+            <Sidebar />
+          </div>
+          <div className="flex-1 p-6 bg-main">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/dashboard" element={<Home />} />
+              <Route path="/tags" element={<Tags />} />
+            </Routes>
+          </div>
+        </div>
+        <div className="w-full bg-palette_light text-center py-4">
+          <Footer />
+        </div>
+      </div>
+    </Router>
   );
 }
 

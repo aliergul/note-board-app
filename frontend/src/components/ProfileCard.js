@@ -1,23 +1,18 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 
-const ProfileCard = ({ userData }) => {
-  const navigate = useNavigate();
+const ProfileCard = () => {
+  const userData = JSON.parse(localStorage.getItem("user")) || "";
 
-  const handleLogOut = () => {
-    localStorage.clear();
-    navigate("/login");
-  };
   return (
-    <div className="profile-container">
-      <div className="profile-card">
-        {userData && userData?.fullName?.[0].toUpperCase()}
+    <div className="max-w-sm rounded-lg shadow-lg bg-white p-6 text-center">
+      <div className="h-16 w-16 bg-palette_light rounded-full mx-auto flex items-center justify-center text-white text-2xl font-bold">
+        {userData?.fullName?.[0].toUpperCase()}
       </div>
-      <div className="profile-info">
-        <span>{userData && userData?.fullName}</span>
-        <a href="/login" onClick={handleLogOut}>
-          logout
-        </a>
+
+      <div className="mt-4">
+        <div className="text-xl font-semibold text-gray-900">
+          {userData?.fullName}
+        </div>
       </div>
     </div>
   );
