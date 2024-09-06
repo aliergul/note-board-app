@@ -1,6 +1,7 @@
 {
   "language_tr": "Turkish",
   "language_en": "English",
+  "language": "Language",
   "login": {
     "title": "Login"
   }

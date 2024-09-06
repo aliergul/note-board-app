@@ -58,7 +58,7 @@ const Home = () => {
   }, []); // eslint-disable-line
 
   return (
-    <div className="bg-red-300 ">
+    <>
       <Header
         userData={userData}
         setNotes={setNotes}
@@ -112,7 +112,7 @@ const Home = () => {
         noteCard={selectedNote}
         getNotes={getNotes}
       />
-    </div>
+    </>
   );
 };
 

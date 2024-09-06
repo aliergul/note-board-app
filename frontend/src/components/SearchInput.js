@@ -36,7 +36,7 @@ const SearchInput = ({ setNotes, getNotes, setError, setNoData }) => {
   }, [searchQuery]); //eslint-disable-line
 
   return (
-    <div className="">
+    <div className="w-80">
       <Search
         placeholder={t("search_placeholder")}
         loading={loading}
