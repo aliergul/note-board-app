@@ -17,7 +17,8 @@ const routes = (
 function App() {
   return (
     <div className="wrapper">
-      <div className="content">{routes}</div>
+      <div>test</div>
+      {/* <div className="content">{routes}</div> */}
     </div>
   );
 }
