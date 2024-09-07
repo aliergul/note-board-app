@@ -16,10 +16,9 @@ const NoData = () => {
       }}
     >
       <div>
-        <MdAssignmentLate size={200} color="white" />
+        <MdAssignmentLate size={200} color="#8EACCD" />
       </div>
-
-      <span>{t("no_data_found")}</span>
+      <span className="text-color4">{t("no_data_found")}</span>
     </div>
   );
 };

@@ -18,7 +18,7 @@ const NoteCard = ({
   setOpen,
 }) => {
   return (
-    <div className="bg-white text-black p-5 rounded-lg w-96 transition-shadow duration-200 hover:shadow hover:shadow-palette_light border border-gray-300">
+    <div className="bg-yellow-200 text-black p-5 rounded-lg w-96 transition-shadow duration-200 hover:shadow hover:shadow-palette_dark border border-gray-300">
       <NoteCardHeader
         title={title}
         handlePinNote={handlePinNote}

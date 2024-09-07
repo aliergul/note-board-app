@@ -18,13 +18,13 @@ const Sidebar = () => {
         <ProfileCard />
         <a
           href="/dashboard"
-          className="mt-8 no-underline transition-all h-10 w-36 flex gap-x-4 items-center justify-center text-sm font-semibold rounded hover:text-palette_light px-4 bg-white"
+          className="mt-8 no-underline transition-all h-10 w-36 flex gap-x-4 items-center justify-center text-sm font-semibold rounded hover:text-color4 px-4 bg-white"
         >
           <span>{t("pages.notes")}</span>
         </a>
         <a
           href="/tags"
-          className="no-underline transition-all h-10 w-36 flex gap-x-4 items-center justify-center text-sm font-semibold rounded hover:text-palette_light px-4 bg-white"
+          className="no-underline transition-all h-10 w-36 flex gap-x-4 items-center justify-center text-sm font-semibold rounded hover:text-color4 px-4 bg-white"
         >
           <span>{t("pages.tags")}</span>
         </a>

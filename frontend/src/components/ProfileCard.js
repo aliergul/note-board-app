@@ -5,7 +5,7 @@ const ProfileCard = () => {
 
   return (
     <div className="max-w-sm rounded-lg shadow-lg bg-white p-6 text-center">
-      <div className="h-16 w-16 bg-palette_light rounded-full mx-auto flex items-center justify-center text-white text-2xl font-bold">
+      <div className="h-16 w-16 bg-color4 rounded-full mx-auto flex items-center justify-center text-white text-2xl font-bold">
         {userData?.fullName?.[0].toUpperCase()}
       </div>
 

@@ -97,7 +97,7 @@ const Home = () => {
         )}
       </div>
       <div
-        className="fixed bottom-5 right-5 flex justify-center items-center w-16 h-16 bg-palette_light rounded-full text-white cursor-pointer shadow-lg hover:shadow-xl transition-shadow duration-300"
+        className="fixed bottom-5 right-5 flex justify-center items-center w-16 h-16 bg-color4 rounded-full text-white cursor-pointer shadow-lg hover:shadow-xl transition-shadow duration-300"
         onClick={() => {
           setModalType("add");
           setOpenModal(true);
