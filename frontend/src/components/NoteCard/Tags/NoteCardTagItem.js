@@ -1,6 +1,6 @@
 import { Chip, Stack } from "@mui/material";
 import React from "react";
-import { textColor } from "../../../utils/colorFunctions";
+import { textColor } from "../../../helpers/colorFunctions";
 
 const NoteCardTagItem = ({ item, index }) => {
   return (

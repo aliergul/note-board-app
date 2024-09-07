@@ -1,4 +1,4 @@
-import axiosInstance from "../utils/axiosInstance";
+import axiosInstance from "./axiosInstance";
 
 const getNotes = async () => {
   try {
