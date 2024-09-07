@@ -35,6 +35,7 @@ const NoteCard = ({
           setOpen={setOpen}
           setType={setType}
           handleEdit={handleEdit}
+          noteData={{ title, content, inserttime, tags }}
         />
       </div>
       <hr />
