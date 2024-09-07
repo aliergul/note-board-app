@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
-import TagInput from "../Tags/TagInput";
+import NoteCardTagInput from "./Tags/NoteCardTagInput";
 import noteService from "../../services/noteService";
 
 const NoteCardAddEdit = ({ open, setOpen, type = "add", data, getNotes }) => {
@@ -85,7 +85,7 @@ const NoteCardAddEdit = ({ open, setOpen, type = "add", data, getNotes }) => {
                 <Form.Label className="titles">
                   {t("modal.form_tags_title")}
                 </Form.Label>
-                <TagInput tags={data?.tags} setTags={setTags} />
+                <NoteCardTagInput tags={data?.tags} setTags={setTags} />
               </Form.Group>
 
               <Modal.Footer>

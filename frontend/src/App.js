@@ -3,7 +3,7 @@ import Home from "./pages/Home/Home";
 import "../src/styles/main.css";
 import Sidebar from "./components/Sidebar/Sidebar";
 import Tags from "./pages/Tags/Tags";
-import Footer from "./components/Footer/Footer";
+//import Footer from "./components/Footer/Footer";
 
 function App() {
   return (
@@ -21,9 +21,9 @@ function App() {
             </Routes>
           </div>
         </div>
-        <div className="w-full bg-palette_light text-center py-4">
+        {/* <div className="w-full bg-palette_light text-center py-4">
           <Footer />
-        </div>
+        </div> */}
       </div>
     </Router>
   );

@@ -1,8 +1,8 @@
 import { Chip, Stack } from "@mui/material";
 import React from "react";
-import { textColor } from "../../utils/colorFunctions";
+import { textColor } from "../../../utils/colorFunctions";
 
-const TagItem = ({ item, index }) => {
+const NoteCardTagItem = ({ item, index }) => {
   return (
     <div key={index}>
       <Stack direction="row" spacing={1}>
@@ -18,4 +18,4 @@ const TagItem = ({ item, index }) => {
   );
 };
 
-export default TagItem;
+export default NoteCardTagItem;

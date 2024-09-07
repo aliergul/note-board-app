@@ -36,7 +36,7 @@ const colourStyles = {
   },
 };
 
-const TagInput = ({ tags, setTags }) => {
+const NoteCardTagInput = ({ tags, setTags }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [options, setOptions] = useState(
     tags?.map((tag) => ({
@@ -84,4 +84,4 @@ const TagInput = ({ tags, setTags }) => {
   );
 };
 
-export default TagInput;
+export default NoteCardTagInput;
