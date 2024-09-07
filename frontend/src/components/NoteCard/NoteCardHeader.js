@@ -9,11 +9,27 @@ const NoteCardHeader = ({ title, handlePinNote, isPinned, inserttime }) => {
         <span>{title}</span>
         <div onClick={handlePinNote}>
           {isPinned ? (
-            <div className="cursor-pointer opacity-50 hover:opacity-100 transition-opacity duration-200">
+            <div
+              style={{
+                opacity: 0.5,
+                transition: "opacity 0.2s",
+                cursor: "pointer",
+              }}
+              onMouseEnter={(e) => (e.currentTarget.style.opacity = 1)}
+              onMouseLeave={(e) => (e.currentTarget.style.opacity = 0.5)}
+            >
               <RiPushpin2Fill size={20} />
             </div>
           ) : (
-            <div className="cursor-pointer opacity-50 hover:opacity-100 transition-opacity duration-200">
+            <div
+              style={{
+                opacity: 0.5,
+                transition: "opacity 0.2s",
+                cursor: "pointer",
+              }}
+              onMouseEnter={(e) => (e.currentTarget.style.opacity = 1)}
+              onMouseLeave={(e) => (e.currentTarget.style.opacity = 0.5)}
+            >
               <RiPushpinLine size={20} />
             </div>
           )}
