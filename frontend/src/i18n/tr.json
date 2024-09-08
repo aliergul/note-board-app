@@ -43,5 +43,12 @@
     "form_tags_title": "Etiket Ekle/Kaldır",
     "delete_description": " <span class='fw-bold'>{{title}}</span> isimli not tamamen silinecektir. Onaylıyor musunuz?",
     "inserttime": "Oluşturulma Tarihi"
+  },
+  "tooltips": {
+    "preview": "Notu Önizle",
+    "delete": "Notu Sil",
+    "edit": "Notu Düzenle",
+    "pin": "Notu Sabitle",
+    "unpin": "Sabitlemeyi Kaldır"
   }
 }
