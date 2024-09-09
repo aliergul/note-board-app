@@ -1,7 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import ProfileCard from "../ProfileCard";
+import ProfileCard from "./ProfileCard";
 import { useTranslation } from "react-i18next";
+import SidebarItems from "./SidebarItems";
 
 const Sidebar = () => {
   const { t } = useTranslation();
@@ -14,29 +15,15 @@ const Sidebar = () => {
 
   return (
     <>
-      <div className="flex flex-col items-center gap-2 justify-center">
+      <div className="flex flex-col items-center justify-center">
         <ProfileCard />
-        <a
-          href="/dashboard"
-          className="mt-8 no-underline transition-all h-10 w-36 flex gap-x-4 items-center justify-center text-sm font-semibold rounded hover:text-color3 px-4 bg-color4"
-        >
-          <span>{t("pages.notes")}</span>
-        </a>
-        <a
-          href="/tags"
-          className="no-underline transition-all h-10 w-36 flex gap-x-4 items-center justify-center text-sm font-semibold rounded hover:text-color3 px-4 bg-color4"
-        >
-          <span>{t("pages.tags")}</span>
-        </a>
+        <div className="flex flex-col gap-3 mt-10">
+          <SidebarItems to="/dashboard" title={t("pages.notes")} />
+          <SidebarItems to="/tags" title={t("pages.tags")} />
+        </div>
       </div>
       <div className="flex justify-center mt-2">
-        <a
-          href="/login"
-          onClick={handleLogOut}
-          className="no-underline transition-all h-10 flex items-center text-sm font-semibold rounded hover:text-red-500 px-4 bg-color4"
-        >
-          Logout
-        </a>
+        <SidebarItems to="/login" title={t("logout")} onClick={handleLogOut} />
       </div>
     </>
   );
