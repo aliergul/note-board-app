@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import ProfileCard from "./ProfileCard";
 import { useTranslation } from "react-i18next";
 import SidebarItems from "./SidebarItems";
+import SocialMedia from "./SocialMedia";
 
 const Sidebar = () => {
   const { t } = useTranslation();
@@ -22,8 +23,9 @@ const Sidebar = () => {
           <SidebarItems to="/tags" title={t("pages.tags")} />
         </div>
       </div>
-      <div className="flex justify-center mt-2">
+      <div className="flex flex-col items-center justify-center mt-2 gap-4">
         <SidebarItems to="/login" title={t("logout")} onClick={handleLogOut} />
+        <SocialMedia />
       </div>
     </>
   );
