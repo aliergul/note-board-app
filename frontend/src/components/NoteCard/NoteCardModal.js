@@ -1,8 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import NoteCardAddEdit from "./NoteCardAddEdit";
 import NoteCardDelete from "./NoteCardDelete";
+import SnackbarMessage from "../../helpers/snackbar";
 
 const NoteCardModal = ({ open, setOpen, type, noteCard, getNotes }) => {
+  const [snackbarProps, setSnackbarProps] = useState({
+    open: false,
+    type: "",
+    message: "",
+  });
+
   return (
     <>
       {open && (
@@ -14,6 +21,7 @@ const NoteCardModal = ({ open, setOpen, type, noteCard, getNotes }) => {
               type={type}
               data={noteCard}
               getNotes={getNotes}
+              setSnackbarProps={setSnackbarProps}
             />
           ) : (
             <NoteCardDelete
@@ -21,10 +29,17 @@ const NoteCardModal = ({ open, setOpen, type, noteCard, getNotes }) => {
               setOpen={setOpen}
               data={noteCard}
               getNotes={getNotes}
+              setSnackbarProps={setSnackbarProps}
             />
           )}
         </>
       )}
+      <SnackbarMessage
+        open={snackbarProps?.open}
+        setSnackbarProps={setSnackbarProps}
+        type={snackbarProps?.type}
+        message={snackbarProps?.message}
+      />
     </>
   );
 };

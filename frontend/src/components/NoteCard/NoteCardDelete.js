@@ -4,7 +4,13 @@ import noteService from "../../services/noteService";
 import { Modal } from "antd";
 import ModalTitleDivider from "../../helpers/modalTitleDivider";
 
-const NoteCardDelete = ({ open, setOpen, data, getNotes }) => {
+const NoteCardDelete = ({
+  open,
+  setOpen,
+  data,
+  getNotes,
+  setSnackbarProps,
+}) => {
   const { t } = useTranslation();
 
   const handleClose = () => {
@@ -14,9 +20,19 @@ const NoteCardDelete = ({ open, setOpen, data, getNotes }) => {
   const handleAction = async () => {
     try {
       await noteService.deleteNote(data._id);
+      setSnackbarProps({
+        open: true,
+        type: "success",
+        message: t("action_success"),
+      });
       getNotes();
       handleClose();
     } catch (err) {
+      setSnackbarProps({
+        open: true,
+        type: "error",
+        message: t("action_failed"),
+      });
       console.error("Not silme sırasında hata oluştu:", err.message);
       //setError(err.message);
     }

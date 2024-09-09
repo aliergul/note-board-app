@@ -5,6 +5,8 @@
   "search_placeholder": "Notlarda arama yapabilirsiniz.",
   "empty_dashboard": "İlk notunu eklemek için sağ alttaki butonu kullanabilirsin.",
   "no_data_found": "Aramanızla eşleşen bir not bulunamadı.",
+  "action_success": "İşleminiz başarı ile gerçekleşmiştir.",
+  "action_failed": "İşlem sırasında bir hata oluştu.",
   "pages": {
     "notes": "Notlar",
     "tags": "Etiketler"

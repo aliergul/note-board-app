@@ -5,7 +5,14 @@ import noteService from "../../services/noteService";
 import { Form, Input, Modal } from "antd";
 import ModalTitleDivider from "../../helpers/modalTitleDivider";
 
-const NoteCardAddEdit = ({ open, setOpen, type = "add", data, getNotes }) => {
+const NoteCardAddEdit = ({
+  open,
+  setOpen,
+  type = "add",
+  data,
+  getNotes,
+  setSnackbarProps,
+}) => {
   const { t } = useTranslation();
   const [form] = Form.useForm();
   //const [tags, setTags] = useState(type === "edit" ? data?.tags : "");
@@ -30,9 +37,19 @@ const NoteCardAddEdit = ({ open, setOpen, type = "add", data, getNotes }) => {
           formObject.tags
         );
       }
+      setSnackbarProps({
+        open: true,
+        type: "success",
+        message: t("action_success"),
+      });
       getNotes();
       handleClose();
     } catch (err) {
+      setSnackbarProps({
+        open: true,
+        type: "error",
+        message: t("action_failed"),
+      });
       console.error("Not ekleme sırasında hata oluştu:", err.message);
       //setError(err.message);
     }
