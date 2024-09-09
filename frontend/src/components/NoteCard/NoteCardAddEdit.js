@@ -1,27 +1,20 @@
-import React, { useState } from "react";
-import { Button, Form, Modal } from "react-bootstrap";
+import React from "react";
 import { useTranslation } from "react-i18next";
-import NoteCardTagInput from "./Tags/NoteCardTagInput";
+//import NoteCardTagInput from "./Tags/NoteCardTagInput";
 import noteService from "../../services/noteService";
+import { Form, Input, Modal } from "antd";
+import ModalTitleDivider from "../../helpers/modalTitleDivider";
 
 const NoteCardAddEdit = ({ open, setOpen, type = "add", data, getNotes }) => {
   const { t } = useTranslation();
-  const [tags, setTags] = useState(type === "edit" ? data?.tags : ""); //eslint-disable-line
+  const [form] = Form.useForm();
+  //const [tags, setTags] = useState(type === "edit" ? data?.tags : "");
 
   const handleClose = () => {
     setOpen(false);
   };
 
-  const handleAction = async (e) => {
-    e.preventDefault();
-
-    const formData = new FormData(e.target);
-    const formObject = {
-      title: formData.get("title"),
-      content: formData.get("content"),
-      //tags: tags,
-    };
-
+  const handleAction = async (formObject) => {
     try {
       if (type === "add") {
         await noteService.addNote(
@@ -45,60 +38,53 @@ const NoteCardAddEdit = ({ open, setOpen, type = "add", data, getNotes }) => {
     }
   };
 
+  const onOk = () => {
+    form.submit();
+  };
+
   return (
     <>
-      <Modal show={open} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>
-            {type === "add" ? t("modal.title_add") : t("modal.title_edit")}
-          </Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <div className="add-edit-modal-container">
-            <Form onSubmit={(e) => handleAction(e)}>
-              <Form.Group className="mb-3">
-                <Form.Label className="titles">
-                  {t("modal.form_title")}
-                </Form.Label>
-                <Form.Control
-                  name="title"
-                  type="text"
-                  placeholder={t("modal.form_title_placeholder")}
-                  defaultValue={type === "edit" ? data?.title : ""}
-                />
-              </Form.Group>
-
-              <Form.Group className="mb-3">
-                <Form.Label className="titles">
-                  {t("modal.form_content_title")}
-                </Form.Label>
-                <Form.Control
-                  name="content"
-                  as="textarea"
-                  rows={3}
-                  placeholder={t("modal.form_content_placeholder")}
-                  defaultValue={type === "edit" ? data?.content : ""}
-                />
-              </Form.Group>
-
-              <Form.Group className="">
-                <Form.Label className="titles">
-                  {t("modal.form_tags_title")}
-                </Form.Label>
-                <NoteCardTagInput tags={data?.tags} setTags={setTags} />
-              </Form.Group>
-
-              <Modal.Footer>
-                <Button variant="secondary" onClick={handleClose}>
-                  {t("modal.close")}
-                </Button>
-                <Button variant="primary" type="submit">
-                  {type === "add" ? t("modal.add") : t("modal.edit")}
-                </Button>
-              </Modal.Footer>
-            </Form>
-          </div>
-        </Modal.Body>
+      <Modal
+        closable={false}
+        open={open}
+        onCancel={handleClose}
+        onOk={onOk}
+        okText={type === "add" ? t("modal.add") : t("modal.edit")}
+        cancelText={t("modal.close")}
+      >
+        <ModalTitleDivider
+          title={type === "add" ? t("modal.title_add") : t("modal.title_edit")}
+        />
+        <Form
+          form={form}
+          name="layout-multiple-horizontal"
+          layout="vertical"
+          labelCol={{ span: 4 }}
+          wrapperCol={{ span: 24 }}
+          onFinish={handleAction}
+          initialValues={{
+            title: type === "edit" ? data?.title : "",
+            content: type === "edit" ? data?.content : "",
+          }}
+        >
+          <Form.Item
+            label={t("modal.form_title")}
+            name="title"
+            rules={[{ required: true }]}
+          >
+            <Input placeholder={t("modal.form_title_placeholder")} />
+          </Form.Item>
+          <Form.Item
+            label={t("modal.form_content_title")}
+            name="content"
+            rules={[{ required: true }]}
+          >
+            <Input.TextArea
+              rows={5}
+              placeholder={t("modal.form_content_placeholder")}
+            />
+          </Form.Item>
+        </Form>
       </Modal>
     </>
   );

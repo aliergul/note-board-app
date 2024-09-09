@@ -1,7 +1,8 @@
-import { Button, Divider, Modal } from "antd";
+import { Button, Modal } from "antd";
 import moment from "moment";
 import React from "react";
 import { useTranslation } from "react-i18next";
+import ModalTitleDivider from "../../helpers/modalTitleDivider";
 
 const NoteCardPreview = ({ open, setOpen, noteData }) => {
   const { t } = useTranslation();
@@ -21,14 +22,7 @@ const NoteCardPreview = ({ open, setOpen, noteData }) => {
         </Button>,
       ]}
     >
-      <Divider
-        variant="dotted"
-        style={{
-          borderColor: "#000000",
-        }}
-      >
-        {noteData?.title}
-      </Divider>
+      <ModalTitleDivider title={noteData?.title} />
       <p>
         <span className="font-bold">{t("modal.inserttime")}: </span>
         <span>{moment(noteData?.inserttime).format("DD/MM/YYYY HH:mm")}</span>
