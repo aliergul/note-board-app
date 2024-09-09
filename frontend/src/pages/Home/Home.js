@@ -7,8 +7,9 @@ import noteService from "../../services/noteService";
 import EmptyCard from "../../components/EmptyCard/EmptyCard";
 import NoData from "../../components/NoData/NoData";
 import { MdAdd } from "react-icons/md";
+import AllPageBackdrop from "../../helpers/backdrop";
 
-const Home = () => {
+const Home = ({ loading, setLoading }) => {
   const [openModal, setOpenModal] = useState(false);
   const [modalType, setModalType] = useState("add");
   const [error, setError] = useState("");
@@ -16,6 +17,7 @@ const Home = () => {
   const [notes, setNotes] = useState([]);
   const [selectedNote, setSelectedNote] = useState(null);
   const [noData, setNoData] = useState(false);
+  const [isSearching, setIsSearching] = useState(false);
 
   const getUser = async () => {
     try {
@@ -28,10 +30,15 @@ const Home = () => {
 
   const getNotes = async () => {
     try {
+      setLoading(true);
       const allNotes = await noteService.getNotes();
       setNotes(allNotes);
     } catch (err) {
       setError(err.message);
+    } finally {
+      setTimeout(() => {
+        setLoading(false);
+      }, 100);
     }
   };
 
@@ -59,12 +66,15 @@ const Home = () => {
 
   return (
     <>
+      <AllPageBackdrop loading={loading || isSearching} />
       <Header
         userData={userData}
         setNotes={setNotes}
         setError={setError}
         getNotes={getNotes}
         setNoData={setNoData}
+        isSearching={isSearching}
+        setIsSearching={setIsSearching}
       />
       <div>{error && error}</div>
       <div className="flex items-start justify-around flex-wrap gap-5 pt-5">

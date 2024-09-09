@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import noteService from "../../services/noteService";
 import { Modal } from "antd";
@@ -12,6 +12,7 @@ const NoteCardDelete = ({
   setSnackbarProps,
 }) => {
   const { t } = useTranslation();
+  const [loading, setLoading] = useState(false);
 
   const handleClose = () => {
     setOpen(false);
@@ -19,6 +20,7 @@ const NoteCardDelete = ({
 
   const handleAction = async () => {
     try {
+      setLoading(true);
       await noteService.deleteNote(data._id);
       setSnackbarProps({
         open: true,
@@ -35,6 +37,8 @@ const NoteCardDelete = ({
       });
       console.error("Not silme sırasında hata oluştu:", err.message);
       //setError(err.message);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -44,7 +48,7 @@ const NoteCardDelete = ({
         open={open}
         closable={false}
         onCancel={handleClose}
-        okButtonProps={{ danger: true }}
+        okButtonProps={{ danger: true, loading: loading, disabled: loading }}
         onOk={handleAction}
         okText={t("modal.delete")}
         cancelText={t("modal.close")}

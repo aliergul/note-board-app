@@ -3,17 +3,23 @@ import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import noteService from "../services/noteService";
 
-const SearchInput = ({ setNotes, getNotes, setError, setNoData }) => {
+const SearchInput = ({
+  setNotes,
+  getNotes,
+  setError,
+  setNoData,
+  isSearching,
+  setIsSearching,
+}) => {
   const { t } = useTranslation();
   const [searchQuery, setSearchQuery] = useState("");
-  const [loading, setLoading] = useState(false);
 
   const handleClearSearch = () => {
     setSearchQuery("");
   };
 
   const search = async () => {
-    setLoading(true);
+    setIsSearching(true);
     try {
       const searchData = await noteService.searchNotes({ query: searchQuery });
       setNotes(searchData.notes);
@@ -25,7 +31,7 @@ const SearchInput = ({ setNotes, getNotes, setError, setNoData }) => {
     } catch (err) {
       setError(err.message);
     } finally {
-      setLoading(false);
+      setIsSearching(false);
     }
   };
 
@@ -39,7 +45,7 @@ const SearchInput = ({ setNotes, getNotes, setError, setNoData }) => {
     <div className="w-80">
       <Search
         placeholder={t("search_placeholder")}
-        loading={loading}
+        loading={isSearching}
         value={searchQuery}
         onSearch={search}
         onChange={(e) => setSearchQuery(e.target.value)}

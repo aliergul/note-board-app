@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 //import NoteCardTagInput from "./Tags/NoteCardTagInput";
 import noteService from "../../services/noteService";
@@ -15,6 +15,7 @@ const NoteCardAddEdit = ({
 }) => {
   const { t } = useTranslation();
   const [form] = Form.useForm();
+  const [loading, setLoading] = useState(false);
   //const [tags, setTags] = useState(type === "edit" ? data?.tags : "");
 
   const handleClose = () => {
@@ -23,6 +24,7 @@ const NoteCardAddEdit = ({
 
   const handleAction = async (formObject) => {
     try {
+      setLoading(true);
       if (type === "add") {
         await noteService.addNote(
           formObject.title,
@@ -52,6 +54,8 @@ const NoteCardAddEdit = ({
       });
       console.error("Not ekleme sırasında hata oluştu:", err.message);
       //setError(err.message);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -68,6 +72,7 @@ const NoteCardAddEdit = ({
         onOk={onOk}
         okText={type === "add" ? t("modal.add") : t("modal.edit")}
         cancelText={t("modal.close")}
+        okButtonProps={{ loading: loading, disabled: loading }}
       >
         <ModalTitleDivider
           title={type === "add" ? t("modal.title_add") : t("modal.title_edit")}

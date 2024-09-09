@@ -3,9 +3,11 @@ import Home from "./pages/Home/Home";
 import "../src/styles/main.css";
 import Sidebar from "./components/Sidebar/Sidebar";
 import Tags from "./pages/Tags/Tags";
+import { useState } from "react";
 //import Footer from "./components/Footer/Footer";
 
 function App() {
+  const [loading, setLoading] = useState(false);
   return (
     <Router>
       <div className="min-h-screen flex flex-col">
@@ -15,7 +17,10 @@ function App() {
           </div>
           <div className="flex-1 p-6 bg-color1 overflow-y-auto">
             <Routes>
-              <Route path="/" element={<Home />} />
+              <Route
+                path="/"
+                element={<Home loading={loading} setLoading={setLoading} />}
+              />
               <Route path="/dashboard" element={<Home />} />
               <Route path="/tags" element={<Tags />} />
             </Routes>
