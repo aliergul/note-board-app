@@ -1,96 +1,86 @@
+import { Button, Form, Input } from "antd";
 import React, { useState } from "react";
-import { useTranslation } from "react-i18next";
-import CustomInputContainer from "../../components/CustomInputContainer";
-import { FaRegEye, FaRegEyeSlash } from "react-icons/fa6";
-import validateEmail from "../../utils/validateEmail";
 import authService from "../../services/authService";
 import { useNavigate } from "react-router-dom";
+import { LockOutlined, UserOutlined } from "@ant-design/icons";
 
 const Login = () => {
-  const { t } = useTranslation();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [controlPassword, setControlPassword] = useState("");
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-  const handlePassword = (e) => {
-    e.preventDefault();
-    var x = document.getElementById("password-input");
-    if (x.type === "password") {
-      x.type = "text";
-      setControlPassword("text");
-    } else {
-      x.type = "password";
-      setControlPassword("password");
-    }
-  };
-
-  const handleLogin = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    if (!validateEmail(email) || !password) {
-      setError(t("login.input_error"));
-    } else {
-      setError(null);
-    }
-
+  const onFinish = async (formObject) => {
     try {
-      await authService.login(email, password);
+      setLoading(true);
+      await authService.login(formObject.email, formObject.password);
       navigate("/dashboard");
     } catch (err) {
       setError(err.message);
+      console.error(error);
     } finally {
       setLoading(false);
     }
   };
-
   return (
-    <div className="login-container">
-      <div className="login-form">
-        <form onSubmit={handleLogin}>
-          <label className="mb-2">{t("login.title")}</label>
-          <div>
-            <CustomInputContainer
-              placeholder={t("login.email")}
-              value={email}
-              setValue={setEmail}
-            />
-          </div>
-          <div className="d-flex gap-1">
-            <CustomInputContainer
-              id="password-input"
-              placeholder={t("login.password")}
-              value={password}
-              setValue={setPassword}
-              type="password"
-            />
+    <div className="flex items-center justify-center mt-72">
+      <Form
+        name="login"
+        initialValues={{
+          remember: true,
+        }}
+        style={{
+          maxWidth: 360,
+        }}
+        onFinish={onFinish}
+      >
+        <Form.Item
+          name="email"
+          rules={[
+            {
+              required: true,
+              message: "Please input your Email!",
+            },
+          ]}
+        >
+          <Input prefix={<UserOutlined />} placeholder="Email" />
+        </Form.Item>
+        <Form.Item
+          name="password"
+          rules={[
+            {
+              required: true,
+              message: "Please input your Password!",
+            },
+          ]}
+        >
+          <Input.Password
+            prefix={<LockOutlined />}
+            type="password"
+            placeholder="Password"
+          />
+        </Form.Item>
+        {/* <Form.Item>
+          <Flex justify="space-between" align="center">
+            <Form.Item name="remember" valuePropName="checked" noStyle>
+              <Checkbox>Remember me</Checkbox>
+            </Form.Item>
+            <a href="">Forgot password</a>
+          </Flex>
+        </Form.Item> */}
 
-            <button className="icon-button" onClick={(e) => handlePassword(e)}>
-              {controlPassword === "text" ? (
-                <FaRegEye className="icon" />
-              ) : (
-                <FaRegEyeSlash />
-              )}
-            </button>
-          </div>
-
-          {error && <p className="error-text">{error}</p>}
-
-          <button
-            type="submit"
-            className="action-btn btn btn-primary"
-            style={{ marginTop: 10, marginBottom: 10 }}
+        <Form.Item>
+          <Button
+            loading={loading}
+            block
+            type="primary"
+            htmlType="submit"
+            className="mb-2"
           >
-            {t("login.title")}
-          </button>
-          <div className="additional-links">
-            <p>{t("login.get_account")}</p>
-            <a href="/signup">{t("login.sign_up")}</a>
-          </div>
-        </form>
-      </div>
+            Log in
+          </Button>
+          or <a href="/signup">Register now!</a>
+        </Form.Item>
+      </Form>
     </div>
   );
 };

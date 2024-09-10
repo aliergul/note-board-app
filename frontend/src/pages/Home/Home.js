@@ -9,7 +9,7 @@ import NoData from "../../components/NoData/NoData";
 import { MdAdd } from "react-icons/md";
 import AllPageBackdrop from "../../helpers/backdrop";
 
-const Home = ({ loading, setLoading }) => {
+const Home = () => {
   const [openModal, setOpenModal] = useState(false);
   const [modalType, setModalType] = useState("add");
   const [error, setError] = useState("");
@@ -18,13 +18,17 @@ const Home = ({ loading, setLoading }) => {
   const [selectedNote, setSelectedNote] = useState(null);
   const [noData, setNoData] = useState(false);
   const [isSearching, setIsSearching] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const getUser = async () => {
     try {
+      setLoading(true);
       const user = await authService.getUser();
       setUserData(user);
     } catch (err) {
       setError(err.message);
+    } finally {
+      setLoading(false);
     }
   };
 
