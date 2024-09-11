@@ -14,13 +14,22 @@ const Sidebar = ({ userData }) => {
     navigate("/login");
   };
 
+  const handleNavigate = (to) => {
+    navigate(to);
+  };
   return (
     <>
       <div className="flex flex-col items-center justify-center">
         <ProfileCard userData={userData} />
         <div className="flex flex-col gap-3 mt-10">
-          <SidebarItems to="/dashboard" title={t("pages.notes")} />
-          <SidebarItems to="/tags" title={t("pages.tags")} />
+          <SidebarItems
+            handleNavigate={() => handleNavigate("/dashboard")}
+            title={t("pages.notes")}
+          />
+          <SidebarItems
+            handleNavigate={() => handleNavigate("/tags")}
+            title={t("pages.tags")}
+          />
         </div>
       </div>
       <div className="flex flex-col items-center justify-center mt-2 gap-4">
