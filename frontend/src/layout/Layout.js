@@ -1,9 +1,10 @@
 import { Routes, Route } from "react-router-dom";
-import Home from "../pages/Home/Home";
+import HomeLayout from "../pages/Home/HomeLayout";
 import "../styles/main.css";
 import Login from "../pages/Login/Login";
 import Tags from "../pages/Tags/Tags";
 import SignUp from "../pages/SignUp/SignUp";
+import Dashboard from "../pages/Dashboard/Dashboard";
 
 const Layout = () => {
   return (
@@ -12,9 +13,10 @@ const Layout = () => {
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
-          <Route path="/" element={<Home />} />
-          <Route path="/dashboard" element={<Home />} />
-          <Route path="/tags" element={<Tags />} />
+          <Route element={<HomeLayout />}>
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/tags" element={<Tags />} />
+          </Route>
         </Routes>
       </div>
     </div>
