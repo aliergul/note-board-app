@@ -27,6 +27,8 @@
     "password": "Şifre",
     "repeat_password": "Şifre Tekrarı",
     "username_error": "Kullanıcı adı alanı boş bırakılamaz.",
+    "empty_email": "Eposta alanı boş bırakılamaz.",
+    "empty_password": "Şifre alanı boş bırakılamaz.",
     "email_error": "Eposta formatı hatalıdır.",
     "password_error": "Şifreler birbirleriyle uyuşmuyor.",
     "already_have": "Zaten bir hesabınız mı var?"

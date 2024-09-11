@@ -13,6 +13,9 @@ module.exports = {
         color3: "#DEE5D4",
         color4: "#8EACCD",
       },
+      backgroundImage: {
+        "custom-bg": "linear-gradient(135deg, #6e8efb, #a777e3)",
+      },
     },
   },
   plugins: [],

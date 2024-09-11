@@ -1,127 +1,122 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { FaRegEye, FaRegEyeSlash } from "react-icons/fa6";
-import CustomInputContainer from "../../components/CustomInputContainer";
-import validateEmail from "../../utils/validateEmail";
+import validateEmail from "../../helpers/validateEmail";
 import authService from "../../services/authService";
 import { useNavigate } from "react-router-dom";
+import { Button, Form, Input } from "antd";
+import { LockOutlined, UserOutlined, MailOutlined } from "@ant-design/icons";
 
 const SignUp = () => {
   const { t } = useTranslation();
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState(null);
-  const [repeatPassword, setRepeatPassword] = useState(null);
-  const [controlPassword, setControlPassword] = useState("");
+  const [form] = Form.useForm();
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
-  const handlePassword = (e) => {
-    e.preventDefault();
-    var x = document.getElementById("password-input");
-    var y = document.getElementById("repeat-password-input");
-
-    if (x.type === "password" || y.type === "password") {
-      x.type = "text";
-      y.type = "text";
-      setControlPassword("text");
-    } else {
-      x.type = "password";
-      y.type = "password";
-      setControlPassword("password");
-    }
-  };
-
-  const handleSignUp = async (e) => {
+  const onFinish = async (formData) => {
     setError(null);
-    e.preventDefault();
-    if (username === "") {
+    if (formData.username === "") {
       setError(t("signup.username_error"));
     }
-    if (!validateEmail(email)) {
+    if (!validateEmail(formData.email)) {
       setError(t("signup.email_error"));
-    }
-    if (password !== repeatPassword) {
-      setError(t("signup.password_error"));
-    }
-
-    try {
-      await authService.signUp(username, email, password);
-      navigate("/dashboard");
-    } catch (err) {
-      setError(err.message);
+      form.setFields([
+        {
+          name: "email",
+          errors: [t("signup.email_error")],
+        },
+      ]);
+      return;
+    } else {
+      try {
+        setLoading(true);
+        await authService.signUp(
+          formData.username,
+          formData.email,
+          formData.password
+        );
+        navigate("/dashboard");
+      } catch (err) {
+        setError(err.message);
+        console.error(error);
+      } finally {
+        setLoading(false);
+      }
     }
   };
 
   return (
-    <div className="login-container">
-      <div className="login-form">
-        <form onSubmit={handleSignUp}>
-          <label className="mb-2">{t("signup.title")}</label>
-          <div>
-            <CustomInputContainer
-              placeholder={t("signup.username")}
-              value={username ?? ""}
-              setValue={setUsername}
-            />
-          </div>
-          <div>
-            <CustomInputContainer
-              placeholder={t("signup.email")}
-              value={email ?? ""}
-              setValue={setEmail}
-            />
-          </div>
-          <div className="d-flex gap-1">
-            <CustomInputContainer
-              id="password-input"
-              placeholder={t("signup.password")}
-              value={password ?? ""}
-              setValue={setPassword}
-              type="password"
-            />
-
-            <button className="icon-button" onClick={(e) => handlePassword(e)}>
-              {controlPassword === "text" ? (
-                <FaRegEye className="icon" />
-              ) : (
-                <FaRegEyeSlash />
-              )}
-            </button>
-          </div>
-
-          <div className="d-flex gap-1">
-            <CustomInputContainer
-              id="repeat-password-input"
-              placeholder={t("signup.repeat_password")}
-              value={repeatPassword ?? ""}
-              setValue={setRepeatPassword}
-              type="password"
-            />
-
-            <button className="icon-button" onClick={(e) => handlePassword(e)}>
-              {controlPassword === "text" ? (
-                <FaRegEye className="icon" />
-              ) : (
-                <FaRegEyeSlash />
-              )}
-            </button>
-          </div>
-
-          {error && <p className="error-text">{error}</p>}
-          <button
-            type="submit"
-            className="action-btn btn btn-primary"
-            style={{ marginTop: 10, marginBottom: 10 }}
+    <div className="items-center justify-center flex h-full">
+      <div
+        className="flex items-center justify-center"
+        style={{
+          padding: "2rem",
+          background: "#fff",
+          borderRadius: "8px",
+          boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
+        }}
+      >
+        <Form
+          form={form}
+          name="login"
+          initialValues={{
+            remember: true,
+          }}
+          style={{
+            maxWidth: 360,
+          }}
+          onFinish={onFinish}
+        >
+          <Form.Item
+            name="username"
+            rules={[
+              {
+                required: true,
+                message: t("signup.username_error"),
+              },
+            ]}
           >
-            {t("signup.title")}
-          </button>
-
-          <div className="additional-links">
-            <p>{t("signup.already_have")}</p>
-            <a href="/login">{t("login.title")}</a>
-          </div>
-        </form>
+            <Input prefix={<UserOutlined />} placeholder="Username" />
+          </Form.Item>
+          <Form.Item
+            name="email"
+            rules={[
+              {
+                required: true,
+                message: t("signup.empty_email"),
+              },
+            ]}
+          >
+            <Input prefix={<MailOutlined />} placeholder="Email" />
+          </Form.Item>
+          <Form.Item
+            name="password"
+            rules={[
+              {
+                required: true,
+                message: t("signup.empty_password"),
+              },
+            ]}
+          >
+            <Input.Password
+              prefix={<LockOutlined />}
+              type="password"
+              placeholder="Password"
+            />
+          </Form.Item>
+          <Form.Item>
+            <Button
+              loading={loading}
+              block
+              type="primary"
+              htmlType="submit"
+              className="mb-2"
+            >
+              {t("signup.title")}
+            </Button>
+            {t("signup.already_have")} <a href="/login">{t("login.title")}</a>
+          </Form.Item>
+        </Form>
       </div>
     </div>
   );
