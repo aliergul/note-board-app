@@ -1,8 +1,6 @@
 import React from "react";
 
-const ProfileCard = () => {
-  const userData = JSON.parse(localStorage.getItem("user")) || "";
-
+const ProfileCard = ({ userData }) => {
   return (
     <div className="max-w-sm rounded-lg shadow-lg border border-black-600 p-6 text-center">
       <div className="h-16 w-16 bg-color4 rounded-full mx-auto flex items-center justify-center text-white text-2xl font-bold">
