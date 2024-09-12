@@ -5,22 +5,29 @@ exports.searchNotes = [
   authenticateToken,
   async (req, res) => {
     const { user } = req.user;
-    const { query } = req.query;
+    const { query, tag } = req.query;
 
-    if (!query) {
+    if (!query && !tag) {
       return res
         .status(400)
-        .json({ error: true, message: "Search query is required." });
+        .json({ error: true, message: "Search query or tag is required." });
     }
 
     try {
-      const matchingNotes = await Note.find({
-        userId: user._id,
-        $or: [
+      const filterConditions = { userId: user._id };
+
+      if (query) {
+        filterConditions.$or = [
           { title: { $regex: new RegExp(query, "i") } },
           { content: { $regex: new RegExp(query, "i") } },
-        ],
-      });
+        ];
+      }
+
+      if (tag) {
+        filterConditions.tags = tag;
+      }
+
+      const matchingNotes = await Note.find(filterConditions);
 
       return res.json({
         error: false,
