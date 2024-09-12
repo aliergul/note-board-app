@@ -33,7 +33,7 @@ const Sidebar = ({ userData }) => {
         </div>
       </div>
       <div className="flex flex-col items-center justify-center mt-2 gap-4">
-        <SidebarItems to="/login" title={t("logout")} onClick={handleLogOut} />
+        <SidebarItems title={t("logout")} onClick={() => handleLogOut()} />
         <SocialMedia />
       </div>
     </>
