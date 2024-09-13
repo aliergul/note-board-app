@@ -5,7 +5,7 @@ const tagSchema = new Schema({
   title: { type: String, required: true },
   color: { type: String, required: true },
   userId: { type: String, required: true },
-  inserttime: { type: Date, default: new Date().getTime() },
+  inserttime: { type: Date, default: Date.now() },
 });
 
 module.exports = mongoose.model("Tag", tagSchema);
