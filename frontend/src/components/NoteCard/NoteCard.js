@@ -2,7 +2,7 @@ import React from "react";
 import NoteCardHeader from "./NoteCardHeader";
 import NoteCardContent from "./NoteCardContent";
 import NoteCardButtons from "./NoteCardButtons";
-import NoteCardTags from "./NoteCardTags/NoteCardTags";
+import NoteCardTags from "./NoteCardTags";
 
 const NoteCard = ({
   title,

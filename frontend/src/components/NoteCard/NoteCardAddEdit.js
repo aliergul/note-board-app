@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-//import NoteCardTagInput from "./Tags/NoteCardTagInput";
 import noteService from "../../services/noteService";
-import { Form, Input, Modal } from "antd";
+import { Form, Input, Modal, Select } from "antd";
 import ModalTitleDivider from "../../helpers/modalTitleDivider";
 
 const NoteCardAddEdit = ({
@@ -16,7 +15,9 @@ const NoteCardAddEdit = ({
   const { t } = useTranslation();
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
-  //const [tags, setTags] = useState(type === "edit" ? data?.tags : "");
+  const allTags = JSON.parse(localStorage.getItem("tags"));
+  const [tags, setTags] = useState(type === "edit" ? data?.tags : []);
+  const [noteTags, setNoteTags] = useState([]);
 
   const handleClose = () => {
     setOpen(false);
@@ -63,6 +64,16 @@ const NoteCardAddEdit = ({
     form.submit();
   };
 
+  useEffect(() => {
+    if (allTags && tags) {
+      const matchingTags = allTags
+        .filter((tag) => tags.includes(tag._id))
+        .map((tag) => ({ title: tag.title, color: tag.color }));
+
+      setNoteTags(matchingTags);
+    }
+  }, [tags]); //eslint-disable-line
+
   return (
     <>
       <Modal
@@ -87,6 +98,7 @@ const NoteCardAddEdit = ({
           initialValues={{
             title: type === "edit" ? data?.title : "",
             content: type === "edit" ? data?.content : "",
+            tags: type === "edit" ? tags : "",
           }}
         >
           <Form.Item
@@ -104,6 +116,17 @@ const NoteCardAddEdit = ({
             <Input.TextArea
               rows={5}
               placeholder={t("modal.form_content_placeholder")}
+            />
+          </Form.Item>
+          <Form.Item label={t("modal.tags")} name="tags">
+            <Select
+              mode="multiple"
+              placeholder={t("modal.select_tags")}
+              onChange={(selectedTags) => setTags(selectedTags)}
+              options={allTags.map((tag) => ({
+                label: tag.title,
+                value: tag._id,
+              }))}
             />
           </Form.Item>
         </Form>

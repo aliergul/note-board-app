@@ -75,7 +75,7 @@ const TagsAddEdit = ({
           onFinish={handleAction}
           initialValues={{
             title: type === "edit" ? data?.title : "",
-            content: type === "edit" ? data?.content : "",
+            color: type === "edit" ? data?.color : "",
           }}
         >
           <Form.Item
@@ -93,10 +93,7 @@ const TagsAddEdit = ({
               return "#" + color.toHex();
             }}
           >
-            <ColorPicker
-              defaultValue={data ? data.color : "#000000"}
-              showText
-            />
+            <ColorPicker showText />
           </Form.Item>
         </Form>
       </Modal>

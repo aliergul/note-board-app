@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Tag } from "antd";
-import { textColor } from "../../../helpers/colorFunctions";
+import { textColor } from "../../helpers/colorFunctions";
 
 const NoteCardTags = ({ tags }) => {
   const allTags = JSON.parse(localStorage.getItem("tags"));

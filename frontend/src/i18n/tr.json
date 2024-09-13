@@ -50,7 +50,8 @@
     "delete_description": " <span class='fw-bold'>{{title}}</span> isimli not tamamen silinecektir. Onaylıyor musunuz?",
     "delete_tag_description": " <span class='fw-bold'>{{title}}</span> isimli etiket tamamen silinecektir. Onaylıyor musunuz?",
     "inserttime": "Oluşturulma Tarihi",
-    "form_color_title": "Renk"
+    "form_color_title": "Renk",
+    "tags": "Etiketler"
   },
   "tag_modal": {
     "title_add": "Etiket Ekle",
