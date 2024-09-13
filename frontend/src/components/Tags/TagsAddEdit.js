@@ -1,4 +1,4 @@
-import { Form, Input, Modal } from "antd";
+import { ColorPicker, Form, Input, Modal } from "antd";
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import tagService from "../../services/tagService";
@@ -89,8 +89,14 @@ const TagsAddEdit = ({
             label={t("modal.form_color_title")}
             name="color"
             rules={[{ required: true }]}
+            getValueFromEvent={(color) => {
+              return "#" + color.toHex();
+            }}
           >
-            <Input placeholder={t("modal.form_title_placeholder")} />
+            <ColorPicker
+              defaultValue={data ? data.color : "#000000"}
+              showText
+            />
           </Form.Item>
         </Form>
       </Modal>

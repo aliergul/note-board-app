@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import Column from "antd/es/table/Column";
 import moment from "moment";
 import TagsButtons from "./TagsButtons";
+import { textColor } from "../../helpers/colorFunctions";
 
 const TagsTable = ({
   dataSource,
@@ -20,7 +21,10 @@ const TagsTable = ({
         key="title"
         render={(_, record) => (
           <Space size="large">
-            <Tag color={record?.color} style={{ fontSize: 15 }}>
+            <Tag
+              color={record?.color}
+              style={{ fontSize: 15, color: textColor(record?.color) }}
+            >
               {record.title}
             </Tag>
           </Space>

@@ -29,14 +29,18 @@ const NoteCard = ({
       <NoteCardContent content={content} />
       <hr />
       <div className="flex items-center justify-between">
-        <NoteCardTags tags={tags} />
-        <NoteCardButtons
-          handleDelete={handleDelete}
-          setOpen={setOpen}
-          setType={setType}
-          handleEdit={handleEdit}
-          noteData={{ title, content, inserttime, tags }}
-        />
+        <div className="flex flex-wrap">
+          <NoteCardTags tags={tags} />
+        </div>
+        <div>
+          <NoteCardButtons
+            handleDelete={handleDelete}
+            setOpen={setOpen}
+            setType={setType}
+            handleEdit={handleEdit}
+            noteData={{ title, content, inserttime, tags }}
+          />
+        </div>
       </div>
       <hr />
     </div>
