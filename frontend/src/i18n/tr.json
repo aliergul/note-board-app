@@ -57,11 +57,18 @@
     "title_edit": "Etiketi Düzenle",
     "title_delete": "Etiketi Sil"
   },
+  "tag_table": {
+    "tag_title": "Etiket Adı",
+    "tag_inserttime": "Oluşturulma Tarihi",
+    "tag_actions": "İşlemler"
+  },
   "tooltips": {
     "preview": "Notu Önizle",
     "delete": "Notu Sil",
     "edit": "Notu Düzenle",
     "pin": "Notu Sabitle",
-    "unpin": "Sabitlemeyi Kaldır"
+    "unpin": "Sabitlemeyi Kaldır",
+    "tag_delete": "Etiketi Sil",
+    "tag_edit": "Etiketi Düzenle"
   }
 }

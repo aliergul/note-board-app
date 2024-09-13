@@ -4,6 +4,7 @@ import TagsHeader from "../../components/Header/TagsHeader";
 import tagService from "../../services/tagService";
 import { MdAdd } from "react-icons/md";
 import TagsModal from "../../components/Tags/TagsModal";
+import TagsTable from "../../components/Tags/TagsTable";
 
 const Tags = () => {
   const [error, setError] = useState("");
@@ -34,23 +35,13 @@ const Tags = () => {
       <AllPageBackdrop loading={loading} />
       <TagsHeader />
       <div>{error}</div>
-      <div className="flex items-start justify-around flex-wrap gap-5 pt-5">
-        {tags.length > 0
-          ? tags.map((tag, index) => (
-              <div key={index}>
-                {tag.title} --- {tag.color}
-                <button
-                  onClick={() => {
-                    setSelectedTag(tag);
-                    setModalType("delete");
-                    setOpenModal(true);
-                  }}
-                >
-                  sil
-                </button>
-              </div>
-            ))
-          : null}
+      <div className="pt-5">
+        <TagsTable
+          dataSource={tags}
+          setSelectedTag={setSelectedTag}
+          setModalType={setModalType}
+          setOpenModal={setOpenModal}
+        />
       </div>
       <div
         className="fixed bottom-5 right-5 flex justify-center items-center w-16 h-16 bg-color4 rounded-full text-white cursor-pointer shadow-lg hover:shadow-xl transition-shadow duration-300"
