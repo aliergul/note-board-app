@@ -2,7 +2,8 @@
   "language_tr": "Türkçe",
   "language_en": "İngilizce",
   "language": "Dil",
-  "search_placeholder": "Notlarda arama yapabilirsiniz.",
+  "note_search_placeholder": "Notlarda arama yapabilirsiniz.",
+  "tag_search_placeholder": "Etiketlerde arama yapabilirsiniz.",
   "empty_dashboard": "İlk notunu eklemek için sağ alttaki butonu kullanabilirsin.",
   "no_data_found": "Aramanızla eşleşen bir not bulunamadı.",
   "action_success": "İşleminiz başarı ile gerçekleşmiştir.",
@@ -47,7 +48,14 @@
     "form_content_placeholder": "Tanrıyı güldürmek istiyorsan ona planlarından bahset!",
     "form_tags_title": "Etiket Ekle/Kaldır",
     "delete_description": " <span class='fw-bold'>{{title}}</span> isimli not tamamen silinecektir. Onaylıyor musunuz?",
-    "inserttime": "Oluşturulma Tarihi"
+    "delete_tag_description": " <span class='fw-bold'>{{title}}</span> isimli etiket tamamen silinecektir. Onaylıyor musunuz?",
+    "inserttime": "Oluşturulma Tarihi",
+    "form_color_title": "Renk"
+  },
+  "tag_modal": {
+    "title_add": "Etiket Ekle",
+    "title_edit": "Etiketi Düzenle",
+    "title_delete": "Etiketi Sil"
   },
   "tooltips": {
     "preview": "Notu Önizle",

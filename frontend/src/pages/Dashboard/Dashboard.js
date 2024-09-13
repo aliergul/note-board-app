@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Header from "../../components/Header";
+import DashboardHeader from "../../components/Header/DashboardHeader";
 import NoteCard from "../../components/NoteCard/NoteCard";
 import NoData from "../../components/NoData/NoData";
 import EmptyCard from "../../components/EmptyCard/EmptyCard";
@@ -43,7 +43,7 @@ const Dashboard = ({
   return (
     <div>
       <AllPageBackdrop loading={loading || isSearching} />
-      <Header
+      <DashboardHeader
         userData={userData}
         setNotes={setNotes}
         setError={setError}

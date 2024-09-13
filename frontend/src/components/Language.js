@@ -36,21 +36,23 @@ const Language = () => {
   }, []);
 
   return (
-    <Space direction="vertical">
-      <Space wrap>
-        <Dropdown
-          menu={{
-            items,
-          }}
-          placement="bottom"
-          arrow={{
-            pointAtCenter: true,
-          }}
-        >
-          <Button className="w-24">{t("language")}</Button>
-        </Dropdown>
+    <div className="flex items-center w-fit justify-end">
+      <Space direction="vertical">
+        <Space wrap>
+          <Dropdown
+            menu={{
+              items,
+            }}
+            placement="bottom"
+            arrow={{
+              pointAtCenter: true,
+            }}
+          >
+            <Button className="w-24">{t("language")}</Button>
+          </Dropdown>
+        </Space>
       </Space>
-    </Space>
+    </div>
   );
 };
 

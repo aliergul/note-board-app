@@ -1,9 +1,9 @@
 import Search from "antd/es/input/Search";
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import noteService from "../services/noteService";
+import noteService from "../../services/noteService";
 
-const SearchInput = ({
+const DashboardSearch = ({
   setNotes,
   getNotes,
   setError,
@@ -42,19 +42,21 @@ const SearchInput = ({
   }, [searchQuery]); //eslint-disable-line
 
   return (
-    <div className="w-80">
-      <Search
-        placeholder={t("search_placeholder")}
-        loading={isSearching}
-        value={searchQuery}
-        onSearch={search}
-        onChange={(e) => setSearchQuery(e.target.value)}
-        allowClear
-        onClear={handleClearSearch}
-        size="large"
-      />
+    <div className="flex justify-center w-full">
+      <div className="w-96">
+        <Search
+          placeholder={t("note_search_placeholder")}
+          loading={isSearching}
+          value={searchQuery}
+          onSearch={search}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          allowClear
+          onClear={handleClearSearch}
+          size="large"
+        />
+      </div>
     </div>
   );
 };
 
-export default SearchInput;
+export default DashboardSearch;

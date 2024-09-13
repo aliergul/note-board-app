@@ -1,8 +1,8 @@
 import React from "react";
-import SearchInput from "./SearchInput";
-import Language from "./Language";
+import DashboardSearch from "./DashboardSearch";
+import Language from "../Language";
 
-const Header = ({
+const DashboardHeader = ({
   setNotes,
   getNotes,
   setError,
@@ -11,8 +11,8 @@ const Header = ({
   setIsSearching,
 }) => {
   return (
-    <div className="flex justify-between mb-3">
-      <SearchInput
+    <div className="flex w-full mb-3">
+      <DashboardSearch
         setNotes={setNotes}
         getNotes={getNotes}
         setError={setError}
@@ -25,4 +25,4 @@ const Header = ({
   );
 };
 
-export default Header;
+export default DashboardHeader;
