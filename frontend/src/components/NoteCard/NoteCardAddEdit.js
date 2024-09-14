@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import noteService from "../../services/noteService";
 import { Form, Input, Modal, Select } from "antd";
@@ -17,7 +17,6 @@ const NoteCardAddEdit = ({
   const [loading, setLoading] = useState(false);
   const allTags = JSON.parse(localStorage.getItem("tags"));
   const [tags, setTags] = useState(type === "edit" ? data?.tags : []);
-  const [noteTags, setNoteTags] = useState([]);
 
   const handleClose = () => {
     setOpen(false);
@@ -64,16 +63,6 @@ const NoteCardAddEdit = ({
     form.submit();
   };
 
-  useEffect(() => {
-    if (allTags && tags) {
-      const matchingTags = allTags
-        .filter((tag) => tags.includes(tag._id))
-        .map((tag) => ({ title: tag.title, color: tag.color }));
-
-      setNoteTags(matchingTags);
-    }
-  }, [tags]); //eslint-disable-line
-
   return (
     <>
       <Modal
@@ -98,7 +87,7 @@ const NoteCardAddEdit = ({
           initialValues={{
             title: type === "edit" ? data?.title : "",
             content: type === "edit" ? data?.content : "",
-            tags: type === "edit" ? tags : "",
+            tags: type === "edit" ? tags : [],
           }}
         >
           <Form.Item

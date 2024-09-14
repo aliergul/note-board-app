@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import Search from "antd/es/input/Search";
 import { useTranslation } from "react-i18next";
+import tagService from "../../services/tagService";
 
-const TagsSearch = () => {
+const TagsSearch = ({ setTags, getTags, setError }) => {
   const { t } = useTranslation();
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -11,11 +12,23 @@ const TagsSearch = () => {
   };
 
   const search = async () => {
-    console.log("tag search");
+    try {
+      const searchData = await tagService.searchTags({ query: searchQuery });
+      setTags(searchData.tags);
+      if (searchData.tags?.length < 1) {
+        //setNoData(true);
+      } else {
+        //setNoData(false);
+      }
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      //setIsSearching(false);
+    }
   };
   useEffect(() => {
     if (searchQuery === "") {
-      console.log("get tags");
+      getTags();
     }
   }, [searchQuery]); //eslint-disable-line
 

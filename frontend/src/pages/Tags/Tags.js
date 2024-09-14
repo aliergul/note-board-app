@@ -26,14 +26,32 @@ const Tags = () => {
     }
   };
 
+  const search = async () => {
+    try {
+      const searchData = await tagService.searchTags({ query: "test1" });
+      setTags(searchData.tags);
+      if (searchData.tags?.length < 1) {
+        //setNoData(true);
+      } else {
+        //setNoData(false);
+      }
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      //setIsSearching(false);
+    }
+  };
+
   useEffect(() => {
     getTags();
   }, []);
 
+  console.log("tags", tags);
   return (
     <div>
       <AllPageBackdrop loading={loading} />
-      <TagsHeader />
+      <TagsHeader setTags={setTags} setError={setError} getTags={getTags} />
+      <button onClick={search}>ara</button>
       <div>{error}</div>
       <div className="pt-5">
         <TagsTable

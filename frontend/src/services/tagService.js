@@ -88,11 +88,29 @@ const deleteTag = async (tagId) => {
   }
 };
 
+const searchTags = async (query) => {
+  try {
+    const response = await axiosInstance.get("/search-tags/", {
+      params: query,
+    });
+    if (response.data && response.data.tags) {
+      return { success: true, tags: response.data.tags };
+    }
+  } catch (error) {
+    if (error.response && error.response.data && error.response.data.message) {
+      throw new Error(error.response.data.message);
+    } else {
+      throw new Error("Beklenmeyen bir hata oluştu. Lütfen tekrar deneyin.");
+    }
+  }
+};
+
 const tagService = {
   getTags,
   addTag,
   editTag,
   deleteTag,
+  searchTags,
 };
 
 export default tagService;
